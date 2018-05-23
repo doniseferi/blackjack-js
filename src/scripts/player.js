@@ -5,19 +5,20 @@ class Player {
     constructor() {
         this.cards = [];
         this.hit = false;
+        this.out = false;
     }
 
     getScore() {
         let score = 0;
-        this.cards.forEach(x => score += x);
+        this.cards.forEach(card => score += card.getPoint());
         return score;
-    }
-
-    getCards() {
-        return this.cards;
     }
 
     hit(value) {
         this.hit = value;
+    }
+
+    out() {
+        return this.getScore() > blackJack;
     }
 }

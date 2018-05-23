@@ -3,17 +3,26 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="./styles/main.css" />
+        <script src="C:\Users\edonis.seferi\OneDrive - ASOS.com Ltd\BlackJackGame\src\scripts\card.js"></script>
     </head>
     <body>
         <h1>Sauced Up!</h1>
-        <div id="blackJack"></div>
         <button onClick="deal()">Button</button>
+        <div id="blackJack"></div>
             
-        <script>
+        <script type="text/javascript">
+            
+            var card1 = new Card(0,0);
             function deal() {
-                console.log('deal');
-                alert('deal');
-            }
+                display(card1);
+            };
+
+        </script>
+
+        <script>
+            function display(toShow) {
+                document.getElementById("blackJack").innerHTML += toShow + '<br />';
+            };
         </script>
     </body>
 </html>

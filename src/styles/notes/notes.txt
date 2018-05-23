@@ -1,0 +1,35 @@
+Card: nothing but a pojso, containing suit and value
+Ctor: (suit, rank)
+POJSO: Ctor PARAMS
+
+
+DeckFactory: returns a fully initalized array of standard 52 playing cards
+Ctor: (deckCount)
+METHOD: NAME: create PARAMS: () RETURNS: array of card
+
+
+Shuffler: class encapsulating algorithm to shuffle an array
+Ctor: ()
+METHOD: NAME: shuffle PARAMS: (array) RETURNS: void
+
+
+Player: simple object to maintain an array of cards
+Ctor: ()
+PROPERTIES: NAME getScore RETURNS numeric value of collection of card
+PROPERTIES: NAME getCards RETURNS collection of cards associated with the player
+PROPERTIES: takeCard RETURNS bool
+METHOD: NAME: hit PARAMS: (bool) RETURNS void
+METHOD: NAME: out PARAMS () RETURNS bool if player out of game
+
+Dealer: similar to player
+Ctor: (players, deck)
+PROPERTIES: NAME getScore RETURNS numeric value of collection of card
+PROPERTIES: NAME cards RETURNS collection of cards associated with the dealer
+METHOD: NAME: hit PARAMS: (bool) returns void
+METHOD: NAME: deal PARAMS () returns 1 card;
+
+BlackJack
+Ctor: (dealer)
+PROPERTIES: NAME players RETURNS array of players
+PROERTIES: NAME dealer RETURNS dealer
+PROPRTIES: NAME points RETURNS array of player with their points

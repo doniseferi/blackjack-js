@@ -2,13 +2,11 @@
 
 class BlackJack {
 
-    constructor(dealer, deckFactory, shuffler) {
+    constructor(dealer) {
         this.dealer = dealer;
-        this.deckFactory = deckFactory;
-        this.shuffler = shuffler;
-        this.deck = deckFactory.create();
-        this.shuffler.shuffle(deck);
+        this.players = dealer.players;
+        this.round = 0;
     };
-
-    
 }
+
+

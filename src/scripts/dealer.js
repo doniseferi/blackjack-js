@@ -9,6 +9,10 @@ class Dealer extends Player {
         this.deck = deck;
     }
 
+    dealCard() {
+        return this.deck.pop();
+    }
+
     hit() {
 
         let closestToBlackJack = this.getOppositionsHighestValidCard();
@@ -18,17 +22,22 @@ class Dealer extends Player {
 
     getOppositionsHighestValidCard() {
 
-        let points = this.getOppositionsPoints(this.players);
-
-        points.sort(function orderByDescending(a, b) {
-            return a - b;
+        let points = this.getOppositionsPoints(this.players)
+        .sort(function orderByDescending(a, b) { 
+            return a - b; 
         });
-        
-        return Math.max.apply(Math, points.filter(function (x) { return x <= blackJack; }));
+
+        return Math.max.apply(Math, points.filter(function (x) {
+            return x <= blackJack;
+        }));
     }
 
     getOppositionsPoints(players) {
 
-        return players.forEach(player => points += player.getScore());
+        let points = [];
+
+        players.forEach(player => points.push(player.getScore()));
+
+        return points;
     }
 }
