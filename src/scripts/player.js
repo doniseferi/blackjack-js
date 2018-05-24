@@ -14,8 +14,12 @@ class Player {
         return score;
     }
 
-    hit(value) {
+    setHit(value) {
         this.hit = value;
+    }
+
+    getHit() {
+        return this.hit;
     }
 
     out() {

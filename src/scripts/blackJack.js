@@ -2,11 +2,18 @@
 
 class BlackJack {
 
-    constructor(dealer) {
-        this.dealer = dealer;
-        this.players = dealer.players;
-        this.round = 0;
+    constructor(numberOfPlayers) {
+        var deck = new DeckFactory().create();
+        let players = this.initalizePlayers(numberOfPlayers);
+        players[0].setHit(true);
+        this.dealer = new Dealer(players, deck);
     };
+
+    initalizePlayers(numberOfPlayers) {
+        let players = [];
+        for (let i = 0; i < numberOfPlayers; i++) {
+            players.push(new Player());
+        }
+        return players;
+    }
 }
-
-

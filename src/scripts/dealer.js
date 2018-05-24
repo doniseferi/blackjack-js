@@ -5,19 +5,26 @@ const minimumDealerPoint = 17;
 
 class Dealer extends Player {
     constructor(players, deck) {
+        super();
         this.players = players;
+        this.players.push(this);
         this.deck = deck;
+        this.cardDitributor = new InitalCardDistribution();
+    }
+
+    deal() {
+        this.cardDitributor.distribute(this);
     }
 
     dealCard() {
         return this.deck.pop();
     }
 
-    hit() {
+    getHit() {
 
         let closestToBlackJack = this.getOppositionsHighestValidCard();
 
-        return points < minimumDealerPoint || this.getScore() <= closestToBlackJack;
+        return this.getScore() < minimumDealerPoint || this.getScore() <= closestToBlackJack;
     }
 
     getOppositionsHighestValidCard() {
