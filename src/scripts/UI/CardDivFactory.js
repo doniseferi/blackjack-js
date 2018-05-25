@@ -1,10 +1,27 @@
 class CardDivFactory {
 
     create(cards) {
-        let div = this.createElement("div")
-        let p = this.createElement("p", "A");
-        let classes = ["card", "suitdiamonds"];
-        this.addClassesToElement(div, classes);
+
+        let div = this.createElement("div");
+
+        div.className = "hand";
+
+        cards.forEach(card => {
+            let cardDiv = this.createCardDiv(card);
+            div.appendChild(cardDiv)
+        });
+
+        return div;
+    }
+
+    createCardDiv(card) {
+
+        var div = this.createElement("div");
+
+        div.className = `card suit${card.suit.value.toLowerCase()}`;
+
+        var p = this.createElement("p", card.rank.value);
+
         div.appendChild(p);
 
         return div;
@@ -12,19 +29,16 @@ class CardDivFactory {
 
 
     createElement(elementType, elementContent) {
+
         let element = document.createElement(elementType);
 
         if (typeof elementContent !== 'undefined') {
+
             let content = document.createTextNode(elementContent);
+
             element.appendChild(content);
         }
 
         return element;
-    }
-
-    addClassesToElement(element, classes) {
-        classes.forEach(classe => {
-            element.className += (" " + classe);
-        });
     }
 }

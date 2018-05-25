@@ -3,43 +3,43 @@
 var ranks = [];
 ranks.push({
     key: 0,
-    value: "ACE"
+    value: "A"
 }, {
     key: 1,
-    value: "TWO"
+    value: "2"
 }, {
     key: 2,
-    value: "THREE"
+    value: "3"
 }, {
     key: 3,
-    value: "FOUR"
+    value: "4"
 }, {
     key: 4,
-    value: "FIVE"
+    value: "5"
 }, {
     key: 5,
-    value: "SIX"
+    value: "6"
 }, {
     key: 6,
-    value: "SEVEN"
+    value: "7"
 }, {
     key: 7,
-    value: "EIGHT"
+    value: "8"
 }, {
     key: 8,
-    value: "NINE"
+    value: "9"
 }, {
     key: 9,
-    value: "TEN"
+    value: "10"
 }, {
     key: 10,
-    value: "JACK"
+    value: "J"
 }, {
     key: 11,
-    value: "QUEEN"
+    value: "Q"
 }, {
     key: 12,
-    value: "KING"
+    value: "K"
 });
 
 var suits = [];
