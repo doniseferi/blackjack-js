@@ -3,11 +3,19 @@
 class BlackJack {
 
     constructor(numberOfPlayers) {
-        var deck = new DeckFactory().create();
+        let deck = this.initalizeDeck(numberOfPlayers);
         let players = this.initalizePlayers(numberOfPlayers);
-        players[0].setHit(true);
-        this.dealer = new Dealer(players, deck);
+        let distributor = this.initalizeDistributor();
+        this.dealer = new Dealer(players, deck, distributor);
     };
+
+    initalizeDeck(numberOfPlayers) {
+        let deckFactory = new DeckFactory();
+        let deck = deckFactory.create(numberOfPlayers);
+        let shuffler = new Shuffler()
+        shuffler.shuffle(deck);
+        return deck;
+    }
 
     initalizePlayers(numberOfPlayers) {
         let players = [];
@@ -15,5 +23,10 @@ class BlackJack {
             players.push(new Player());
         }
         return players;
+    }
+
+    initalizeDistributor() {
+        let distributorFactory = new DistributionFactory();
+        return distributorFactory.create();
     }
 }

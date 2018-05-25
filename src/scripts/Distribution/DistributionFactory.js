@@ -1,5 +1,5 @@
 class DistributionFactory {
-    getDistribution() {
+    create() {
         return new InitalCardDistribution(new SingleCardDistribution());
     }
 }

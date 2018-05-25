@@ -4,12 +4,12 @@ const blackJack = 21;
 const minimumDealerPoint = 17;
 
 class Dealer extends Player {
-    constructor(players, deck) {
+    constructor(players, deck, cardDitributor) {
         super();
         this.players = players;
         this.players.push(this);
         this.deck = deck;
-        this.cardDitributor = new InitalCardDistribution();
+        this.cardDitributor = cardDitributor;
     }
 
     deal() {
