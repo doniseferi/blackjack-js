@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="./styles/card.css" />
     <script src="./scripts/Distribution/InitalCardDistribution.js"></script>
     <script src="./scripts/Distribution/SingleCardDistribution.js"></script>
     <script src="./scripts/Distribution/DistributionFactory.js"></script>
@@ -14,20 +15,31 @@
     <script src="./scripts/Players/Player.js"></script>
     <script src="./scripts/Players/Dealer.js"></script>
     <script src="./scripts/blackJack.js"></script>
+    <script src="./scripts/UI/CardDivFactory.js"></script>
 </head>
 
 <body>
     <h1>Sauced Up!</h1>
     <button onClick="display()">Button</button>
     <div id="div1"></div>
-
+    <div id="div2"></div>
     <script type="text/javascript">
         let bj = new BlackJack(2);
 
         function display() {
             bj.dealer.deal();
             updateDOM(bj.dealer.players);
+            buildDiv(bj.dealer.players);
         };
+    </script>
+    <script type="text/javascript">
+        function buildDiv(players) {
+            var div2 = document.getElementById("div2");
+            var cardDivFactory = new CardDivFactory();
+            players.forEach(player => {
+                div2.appendChild(cardDivFactory.create(player.cards));
+            });
+        }
     </script>
     <script type="text/javascript">
         function updateDOM(players) {
