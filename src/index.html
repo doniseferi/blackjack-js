@@ -33,12 +33,21 @@
         function updateDOM(players) {
             var element = document.getElementById("div1");
             element.innerHTML = "";
-
             players.forEach(player => {
+                var extraDiv = document.createElement("div");
+                if (player.constructor.name !== 'Dealer') {
+                    let button = document.createElement("button")
+                    button.onclick = function () {}
+                    let buttonText = document.createTextNode("Hit");
+                    button.appendChild(buttonText);
+                    extraDiv.appendChild(button);
+                }
+
                 let paragraph = document.createElement("p");
                 let text = document.createTextNode(`${player.constructor.name} has ${player.getScore()}`);
                 paragraph.appendChild(text);
-                element.appendChild(paragraph);
+                extraDiv.appendChild(paragraph);
+                element.appendChild(extraDiv);
             });
         }
     </script>
