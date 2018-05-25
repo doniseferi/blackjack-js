@@ -7,6 +7,7 @@
     <script src="./scripts/Distribution/InitalCardDistribution.js"></script>
     <script src="./scripts/Distribution/SingleCardDistribution.js"></script>
     <script src="./scripts/Distribution/DistributionFactory.js"></script>
+    <script src="./scripts/Points/PointsCalculator.js"></script>
     <script src="./scripts/Card/card.js"></script>
     <script src="./scripts/Card/DeckFactory.js"></script>
     <script src="./scripts/Card/shuffler.js"></script>
@@ -24,17 +25,15 @@
         let bj = new BlackJack(2);
 
         function display() {
-            let dealer = bj.dealer;
-            dealer.deal();
-            updateDOM(dealer);
+            bj.dealer.deal();
+            updateDOM(bj.dealer.players);
         };
     </script>
     <script type="text/javascript">
-        function updateDOM(dealer) {
+        function updateDOM(players) {
             var element = document.getElementById("div1");
             element.innerHTML = "";
 
-            let players = dealer.players;
             players.forEach(player => {
                 let paragraph = document.createElement("p");
                 let text = document.createTextNode(`${player.constructor.name} has ${player.getScore()}`);

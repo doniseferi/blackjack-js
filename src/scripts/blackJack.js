@@ -6,7 +6,7 @@ class BlackJack {
         let deck = this.initalizeDeck(numberOfPlayers);
         let players = this.initalizePlayers(numberOfPlayers);
         let distributor = this.initalizeDistributor();
-        this.dealer = new Dealer(players, deck, distributor);
+        this.dealer = new Dealer(players, deck, distributor, new PointsCalcualtor());
     };
 
     initalizeDeck(numberOfPlayers) {
