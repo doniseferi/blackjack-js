@@ -3,7 +3,7 @@
 class DeckFactory {
 
     create(deckCount) {
-        
+
         let deck = [];
 
         deck = this.createDeck(deckCount);
@@ -12,15 +12,15 @@ class DeckFactory {
     }
 
     createDeck(amount) {
-       
+
         if (!amount) {
             amount = 1;
         }
-        
+
         let decks = [];
 
         for (i = 0; i < amount; i++) {
-            
+
             decks += this.createDeck();
         }
 
@@ -30,7 +30,7 @@ class DeckFactory {
     createDeck() {
 
         let deck = [];
-        
+
         for (let rank = 0; rank < 13; rank++) {
             for (let suit = 0; suit < 4; suit++) {
                 let card = new Card(suit, rank);

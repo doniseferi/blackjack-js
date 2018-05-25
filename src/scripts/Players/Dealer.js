@@ -29,13 +29,15 @@ class Dealer extends Player {
 
     getOppositionsHighestValidCard() {
 
-        let points = this.getOppositionsPoints(this.players)
-        .sort(function orderByDescending(a, b) { 
-            return a - b; 
-        });
+        let players = this.players.filter(player => player.constructor.name == "Player");
 
-        return Math.max.apply(Math, points.filter(function (x) {
-            return x <= blackJack;
+        let points = this.getOppositionsPoints(players)
+            .sort(function orderByDescending(a, b) {
+                return a - b;
+            });
+
+        return Math.max.apply(Math, points.filter(function (score) {
+            return score <= blackJack;
         }));
     }
 

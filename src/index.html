@@ -1,30 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="./styles/main.css" />
-        <script src="./scripts/Distribution/InitalCardDistribution.js"></script>
-        <script src="./scripts/Distribution/SingleCardDistribution.js"></script>
-        <script src="./scripts/Distribution/DistributionFactory.js"></script>
-        <script src="./scripts/Card/card.js"></script>
-        <script src="./scripts/Card/DeckFactory.js"></script>
-        <script src="./scripts/Card/shuffler.js"></script>
-        <script src="./scripts/Players/Player.js"></script>
-        <script src="./scripts/Players/Dealer.js"></script>
-        <script src="./scripts/blackJack.js"></script>        
-    </head>
-    <body>
-        <h1>Sauced Up!</h1>
-        <button onClick="display()">Button</button>
-        <div id="division"></div>
-            
-        <script type="text/javascript">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./styles/main.css" />
+    <script src="./scripts/Distribution/InitalCardDistribution.js"></script>
+    <script src="./scripts/Distribution/SingleCardDistribution.js"></script>
+    <script src="./scripts/Distribution/DistributionFactory.js"></script>
+    <script src="./scripts/Card/card.js"></script>
+    <script src="./scripts/Card/DeckFactory.js"></script>
+    <script src="./scripts/Card/shuffler.js"></script>
+    <script src="./scripts/Players/Player.js"></script>
+    <script src="./scripts/Players/Dealer.js"></script>
+    <script src="./scripts/blackJack.js"></script>
+</head>
+
+<body>
+    <h1>Sauced Up!</h1>
+    <button onClick="display()">Button</button>
+    <div id="div1"></div>
+
+    <script type="text/javascript">
+        let bj = new BlackJack(2);
 
         function display() {
-            let bj = new BlackJack(2);
             let dealer = bj.dealer;
             dealer.deal();
+            updateDOM(dealer);
         };
-        </script>
-    </body>
+    </script>
+    <script type="text/javascript">
+        function updateDOM(dealer) {
+            var element = document.getElementById("div1");
+            element.innerHTML = "";
+
+            let players = dealer.players;
+            players.forEach(player => {
+                let paragraph = document.createElement("p");
+                let text = document.createTextNode(`${player.constructor.name} has ${player.getScore()}`);
+                paragraph.appendChild(text);
+                element.appendChild(paragraph);
+            });
+        }
+    </script>
+</body>
+
 </html>
