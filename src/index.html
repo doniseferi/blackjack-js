@@ -23,10 +23,12 @@
     <button onClick="display()">Button</button>
     <div id="div1"></div>
     <div id="div2"></div>
+    <div id="div3"></div>
     <script type="text/javascript">
         let bj = new BlackJack(2);
 
         function display() {
+            showDeck(bj.dealer.deck);
             bj.dealer.deal();
             updateDOM(bj.dealer.players);
             buildDiv(bj.dealer.players);
@@ -39,6 +41,14 @@
             players.forEach(player => {
                 div2.appendChild(cardFactory.create(player.cards));
             });
+        }
+    </script>
+    <script type="text/javascript">
+        function showDeck(deck) {
+            var div3 = document.getElementById("div3");
+            var cardFactory = new CardFactory();
+            let deckDiv = cardFactory.create(deck);
+            div3.appendChild(deckDiv);
         }
     </script>
     <script type="text/javascript">
