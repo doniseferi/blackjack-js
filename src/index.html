@@ -9,13 +9,13 @@
     <script src="./scripts/Distribution/SingleCardDistribution.js"></script>
     <script src="./scripts/Distribution/DistributionFactory.js"></script>
     <script src="./scripts/Points/PointsCalculator.js"></script>
-    <script src="./scripts/Card/card.js"></script>
+    <script src="./scripts/Card/Card.js"></script>
     <script src="./scripts/Card/DeckFactory.js"></script>
-    <script src="./scripts/Card/shuffler.js"></script>
+    <script src="./scripts/Card/Shuffler.js"></script>
     <script src="./scripts/Players/Player.js"></script>
     <script src="./scripts/Players/Dealer.js"></script>
     <script src="./scripts/blackJack.js"></script>
-    <script src="./scripts/UI/CardDivFactory.js"></script>
+    <script src="./scripts/UI/cardFactory.js"></script>
 </head>
 
 <body>
@@ -35,9 +35,9 @@
     <script type="text/javascript">
         function buildDiv(players) {
             var div2 = document.getElementById("div2");
-            var cardDivFactory = new CardDivFactory();
+            var cardFactory = new CardFactory();
             players.forEach(player => {
-                div2.appendChild(cardDivFactory.create(player.cards));
+                div2.appendChild(cardFactory.create(player.cards));
             });
         }
     </script>

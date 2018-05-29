@@ -1,4 +1,4 @@
-class CardDivFactory {
+class CardFactory {
 
     create(cards) {
 
