@@ -3,7 +3,7 @@
 class PointsCalcualtor {
 
     getHighestValidCard(players) {
-        let points = this.getSumOfPoints(players)
+        let points = this.getPoints(players)
             .sort(function orderByDescending(a, b) {
                 return a - b;
             });
@@ -13,12 +13,17 @@ class PointsCalcualtor {
         }));
     }
 
-    getSumOfPoints(players) {
+    getPoints(players) {
 
         let points = [];
 
         players.forEach(player => points.push(player.getScore()));
 
         return points;
+    }
+
+    getPoints(cards) {
+
+
     }
 }

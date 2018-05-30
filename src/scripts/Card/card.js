@@ -69,5 +69,7 @@ class Card {
 
     getPoint() {
         return (this.rank.key < 10) ? this.rank.key + 1 : 10;
+        /* needs to be updated to:
+        pointsCalculator.getPoint(this); */
     }
 }
