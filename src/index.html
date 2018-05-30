@@ -20,6 +20,9 @@
 
 <body>
     <h1>Sauced Up!</h1>
+    <iframe src="./bugs.html">
+        <p>iframes not supported.</p>
+    </iframe>
     <button onClick="display()">Button</button>
     <div id="div1"></div>
     <div id="div2"></div>
@@ -28,10 +31,11 @@
         let bj = new BlackJack(2);
 
         function display() {
-            showDeck(bj.dealer.deck);
             bj.dealer.deal();
             updateDOM(bj.dealer.players);
             buildDiv(bj.dealer.players);
+            showDeck(bj.dealer.deck);
+            pointCalculator(bj.dealer.players)
         };
     </script>
     <script type="text/javascript">
@@ -40,6 +44,13 @@
             var cardFactory = new CardFactory();
             players.forEach(player => {
                 div2.appendChild(cardFactory.create(player.cards));
+            });
+        };
+
+        function pointCalculator(players) {
+            var s = new PointsCalculator();
+            players.forEach(player => {
+                var ss = s.calculateHand(player.cards);
             });
         }
     </script>

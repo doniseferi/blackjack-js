@@ -4,13 +4,13 @@ const blackJack = 21;
 const minimumDealerPoint = 17;
 
 class Dealer extends Player {
-    constructor(players, deck, cardDitributor, pointsCalcualtor) {
-        super();
+    constructor(pointsCalcualtor, players, deck, cardDitributor) {
+        super(pointsCalcualtor);
+        this.pointsCalculator = pointsCalcualtor;
         this.players = players;
         this.players.push(this);
         this.deck = deck;
         this.cardDitributor = cardDitributor;
-        this.pointsCalcualtor = pointsCalcualtor;
     }
 
     deal() {
@@ -25,7 +25,7 @@ class Dealer extends Player {
 
         let players = this.players.filter(player => player.constructor.name == "Player");
 
-        let closestToBlackJack = this.pointsCalcualtor.getHighestValidCard(players);
+        let closestToBlackJack = this.pointsCalculator.getHighestValidCard(players);
 
         return this.getScore() < minimumDealerPoint || this.getScore() <= closestToBlackJack;
     }
