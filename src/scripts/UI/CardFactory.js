@@ -14,20 +14,6 @@ class CardFactory {
         return div;
     }
 
-    createCardDiv(card) {
-
-        var div = this.createElement("div");
-
-        div.className = `card suit${card.suit.value.toLowerCase()}`;
-
-        var p = this.createElement("p", card.rank.value);
-
-        div.appendChild(p);
-
-        return div;
-    }
-
-
     createElement(elementType, elementContent) {
 
         let element = document.createElement(elementType);
@@ -40,5 +26,18 @@ class CardFactory {
         }
 
         return element;
+    }
+
+    createCardDiv(card) {
+
+        var div = this.createElement("div");
+
+        div.className = `card suit${card.suit.value.toLowerCase()}`;
+
+        var p = this.createElement("p", card.rank.value);
+
+        div.appendChild(p);
+
+        return div;
     }
 }
