@@ -46,6 +46,12 @@
         };
     </script>
     <script type="text/javascript">
+        function hitPlayer(player) {
+            let hitOrStay = false
+            player.setHit(!hitOrStay);
+        }
+    </script>
+    <script type="text/javascript">
         function updateDOM(players) {
             var element = document.getElementById("div1");
             element.innerHTML = "";
@@ -53,8 +59,9 @@
                 var extraDiv = document.createElement("div");
                 if (player.constructor.name !== 'Dealer') {
                     let button = document.createElement("button")
-                    button.onclick = function () {}
-                    let buttonText = document.createTextNode("Hit");
+                    button.onclick = this.hitPlayer(player);
+                    let hitMe = player.getHit() ? "picking up card" : "not picking up card";
+                    let buttonText = document.createTextNode(hitMe);
                     button.appendChild(buttonText);
                     extraDiv.appendChild(button);
                 }

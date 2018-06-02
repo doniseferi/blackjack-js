@@ -18,7 +18,9 @@ class Dealer extends Player {
     }
 
     dealCard() {
-        return this.deck.pop();
+        if (this.deck.length > 0) {
+            return this.deck.pop();
+        }
     }
 
     getHit() {
