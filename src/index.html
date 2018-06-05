@@ -24,8 +24,8 @@
         <p>iframes not supported.</p>
     </iframe>
     <button onClick="display()">Button</button>
-    <div id="div1"></div>
-    <div id="div2"></div>
+    <div id="scores"></div>
+    <div id="table"></div>
     <script type="text/javascript">
         let bj = new BlackJack(2);
 
@@ -37,32 +37,30 @@
     </script>
     <script type="text/javascript">
         function buildDiv(players) {
-            var div2 = document.getElementById("div2");
-            div2.innerHTML = "";
-            var cardFactory = new CardFactory();
+            let table = document.getElementById("table");
+            table.innerHTML = "";
+            let cardFactory = new CardFactory();
             players.forEach(player => {
-                div2.appendChild(cardFactory.create(player.cards));
+                table.appendChild(cardFactory.create(player.cards));
             });
+
+            console.log(bj.dealer.deck);
         };
     </script>
-    <script type="text/javascript">
-        function hitPlayer(player) {
-            let hitOrStay = false
-            player.setHit(!hitOrStay);
-        }
-    </script>
+
     <script type="text/javascript">
         function updateDOM(players) {
-            var element = document.getElementById("div1");
-            element.innerHTML = "";
+            let scores = document.getElementById("scores");
+            scores.innerHTML = "";
             players.forEach(player => {
-                var extraDiv = document.createElement("div");
+                let extraDiv = document.createElement("div");
                 if (player.constructor.name !== 'Dealer') {
                     let button = document.createElement("button")
-                    button.onclick = this.hitPlayer(player);
-                    let hitMe = player.getHit() ? "picking up card" : "not picking up card";
-                    let buttonText = document.createTextNode(hitMe);
-                    button.appendChild(buttonText);
+                    let buttonId = `button_${players.indexOf(player)}`;
+                    button.id = buttonId;
+                    button.onclick = function (obj) {
+                        onPlayerClick(obj);
+                    }
                     extraDiv.appendChild(button);
                 }
 
@@ -70,7 +68,7 @@
                 let text = document.createTextNode(`${player.constructor.name} has ${player.getScore()}`);
                 paragraph.appendChild(text);
                 extraDiv.appendChild(paragraph);
-                element.appendChild(extraDiv);
+                scores.appendChild(extraDiv);
             });
         }
     </script>

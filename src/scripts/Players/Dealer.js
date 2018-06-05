@@ -29,6 +29,9 @@ class Dealer extends Player {
 
         let closestToBlackJack = this.pointsCalculator.getHighestValidCard(players);
 
-        return this.getScore() < minimumDealerPoint || this.getScore() <= closestToBlackJack;
+        let points = this.getScore();
+
+        return points < minimumDealerPoint || (points <= closestToBlackJack && points < blackJack);
     }
+
 }

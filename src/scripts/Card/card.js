@@ -64,6 +64,6 @@ class Card {
     }
 
     toString() {
-        return $ `{this.rank.value} of {this.suit.value}`;
+        return `${this.rank.value} of ${this.suit.value}`;
     }
 }

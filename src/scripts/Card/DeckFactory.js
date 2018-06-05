@@ -6,25 +6,27 @@ class DeckFactory {
 
         let deck = [];
 
-        deck = this.createDeck(deckCount);
+        deck = this.createDecks(deckCount);
 
         return deck;
     }
 
-    createDeck(amount) {
+    createDecks(amount) {
 
         if (!amount) {
             amount = 1;
         }
 
-        let decks = [];
+        let deck = [];
 
-        for (i = 0; i < amount; i++) {
+        for (let i = 0; i < amount; i++) {
 
-            decks += this.createDeck();
+            deck.push(this.createDeck());
         }
 
-        return decks;
+        let ary = [].concat(...deck)
+
+        return ary;
     }
 
     createDeck() {
@@ -39,4 +41,5 @@ class DeckFactory {
         }
         return deck;
     }
+
 }
