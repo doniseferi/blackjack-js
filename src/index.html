@@ -15,7 +15,8 @@
     <script src="./scripts/Players/Player.js"></script>
     <script src="./scripts/Players/Dealer.js"></script>
     <script src="./scripts/blackJack.js"></script>
-    <script src="./scripts/UI/cardFactory.js"></script>
+    <script src="./scripts/UI/CardFactory.js"></script>
+    <script src="./scripts/UI/GetPlayersCards.js"></script>
 </head>
 
 <body>
@@ -28,29 +29,19 @@
     <div id="table"></div>
     <script type="text/javascript">
         let bj = new BlackJack(2);
+        let cardFactory = new CardFactory();
+        let tableUpdater = new TableUpdater(cardFactory);
 
         function display() {
             bj.dealer.deal();
-            updateDOM(bj.dealer.players);
-            buildDiv(bj.dealer.players);
-        };
-    </script>
-    <script type="text/javascript">
-        function buildDiv(players) {
-            let table = document.getElementById("table");
-            table.innerHTML = "";
-            let cardFactory = new CardFactory();
-            players.forEach(player => {
-                table.appendChild(cardFactory.create(player.cards));
-            });
-
-            console.log(bj.dealer.deck);
+            showGameState(bj.dealer.players, "scores");
+            tableUpdater.update(bj.dealer.players, "table");
         };
     </script>
 
     <script type="text/javascript">
-        function updateDOM(players) {
-            let scores = document.getElementById("scores");
+        function showGameState(players, elementId) {
+            let scores = document.getElementById(elementId);
             scores.innerHTML = "";
             players.forEach(player => {
                 let extraDiv = document.createElement("div");
@@ -71,6 +62,8 @@
                 scores.appendChild(extraDiv);
             });
         }
+
+        function createSummary(players) {}
     </script>
 </body>
 
