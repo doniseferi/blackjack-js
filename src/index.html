@@ -16,7 +16,8 @@
     <script src="./scripts/Players/Dealer.js"></script>
     <script src="./scripts/blackJack.js"></script>
     <script src="./scripts/UI/CardFactory.js"></script>
-    <script src="./scripts/UI/GetPlayersCards.js"></script>
+    <script src="./scripts/UI/TableUpdater.js"></script>
+    <script src="./scripts/UI/ElementFactory.js"></script>
 </head>
 
 <body>
@@ -29,7 +30,8 @@
     <div id="table"></div>
     <script type="text/javascript">
         let bj = new BlackJack(2);
-        let cardFactory = new CardFactory();
+        let elemenFactory = new ElementFactory();
+        let cardFactory = new CardFactory(elemenFactory);
         let tableUpdater = new TableUpdater(cardFactory);
 
         function display() {
