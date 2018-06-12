@@ -10,7 +10,7 @@ class CardFactory {
 
         let div = this.elementFactory.create("div");
 
-        div.className = "hand";
+        div.setAttribute("class", "hand");
 
         cards.forEach(card => {
             let cardDiv = this.createCardDiv(card);
@@ -24,7 +24,7 @@ class CardFactory {
 
         var div = this.elementFactory.create("div");
 
-        div.className = `card suit${card.suit.value.toLowerCase()}`;
+        div.setAttribute("class", `card suit${card.suit.value.toLowerCase()}`);
 
         var p = this.elementFactory.create("p", card.rank.value);
 

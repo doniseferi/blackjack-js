@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="./styles/main.css" />
     <link rel="stylesheet" href="./styles/card.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fjalla+One">
     <script src="./scripts/Distribution/InitalCardDistribution.js"></script>
     <script src="./scripts/Distribution/SingleCardDistribution.js"></script>
     <script src="./scripts/Distribution/DistributionFactory.js"></script>
@@ -18,14 +19,11 @@
     <script src="./scripts/UI/CardFactory.js"></script>
     <script src="./scripts/UI/TableUpdater.js"></script>
     <script src="./scripts/UI/ElementFactory.js"></script>
+    <script src="./scripts/UI/SummaryUpdater.js"></script>
 </head>
 
 <body>
-    <h1>Sauced Up!</h1>
-    <iframe style="height: 10px; width: 10px;" src="./bugs.html">
-        <p>iframes not supported.</p>
-    </iframe>
-    <button onClick="display()">Button</button>
+    <a class="dealButton hitMeButton" onClick="display()">Deal</a>
     <div id="scores"></div>
     <div id="table"></div>
     <script type="text/javascript">
@@ -33,39 +31,13 @@
         let elemenFactory = new ElementFactory();
         let cardFactory = new CardFactory(elemenFactory);
         let tableUpdater = new TableUpdater(cardFactory);
+        let summaryUpdater = new SummaryUpdater(elemenFactory);
 
         function display() {
             bj.dealer.deal();
-            showGameState(bj.dealer.players, "scores");
+            summaryUpdater.update(bj.dealer.players, "scores");
             tableUpdater.update(bj.dealer.players, "table");
         };
-    </script>
-
-    <script type="text/javascript">
-        function showGameState(players, elementId) {
-            let scores = document.getElementById(elementId);
-            scores.innerHTML = "";
-            players.forEach(player => {
-                let extraDiv = document.createElement("div");
-                if (player.constructor.name !== 'Dealer') {
-                    let button = document.createElement("button")
-                    let buttonId = `button_${players.indexOf(player)}`;
-                    button.id = buttonId;
-                    button.onclick = function (obj) {
-                        onPlayerClick(obj);
-                    }
-                    extraDiv.appendChild(button);
-                }
-
-                let paragraph = document.createElement("p");
-                let text = document.createTextNode(`${player.constructor.name} has ${player.getScore()}`);
-                paragraph.appendChild(text);
-                extraDiv.appendChild(paragraph);
-                scores.appendChild(extraDiv);
-            });
-        }
-
-        function createSummary(players) {}
     </script>
 </body>
 
