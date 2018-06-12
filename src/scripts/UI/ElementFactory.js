@@ -6,7 +6,7 @@ class ElementFactory {
 
         let element = document.createElement(elementType);
 
-        if (typeof elementContent !== 'undefined') {
+        if (typeof elementContent !== 'undefined' && elementContent !== null) {
 
             let content = document.createTextNode(elementContent);
 
