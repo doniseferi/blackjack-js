@@ -22,11 +22,11 @@ class CardFactory {
 
     createCardDiv(card) {
 
-        var div = this.elementFactory.create("div");
+        let div = this.elementFactory.create("div");
 
         div.setAttribute("class", `card suit${card.suit.value.toLowerCase()}`);
 
-        var p = this.elementFactory.create("p", card.rank.value);
+        let p = this.elementFactory.create("p", card.rank.value);
 
         div.appendChild(p);
 
