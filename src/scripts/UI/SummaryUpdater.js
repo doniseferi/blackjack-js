@@ -11,12 +11,7 @@ class SummaryUpdater {
 
         players.forEach(player => {
 
-            let button = this.createPlayerButton(player);
-            let playerText = this.generateTextNode(players, player);
-            let playerDiv = this.elementFactory.create("div");
-
-            playerDiv.appendChild(playerText);
-            playerDiv.appendChild(button);
+            let playerDiv = this.createPlayerDiv(player, players);
             htmlElement.appendChild(playerDiv);
         });
     }
@@ -31,7 +26,20 @@ class SummaryUpdater {
         return htmlElement;
     }
 
-    createPlayerButton(player) {
+
+    createPlayerDiv(player, players) {
+
+        let button = this.createPlayerButton(player, players);
+        let playerText = this.generateTextNode(players, player);
+
+        let playerDiv = this.elementFactory.create("div");
+        playerDiv.appendChild(playerText);
+        playerDiv.appendChild(button);
+
+        return playerDiv;
+    }
+
+    createPlayerButton(player, players) {
 
         if (player.constructor.name == 'Dealer') {
             return this.elementFactory.create("a");
@@ -41,14 +49,23 @@ class SummaryUpdater {
         let anchor = this.elementFactory.create("a", text);
 
         anchor.setAttribute("class", "hitMeButton");
+        let id = `player-${players.indexOf(player)}-button`;
+        anchor.setAttribute("id", id);
+        anchor.onclick = function (event) {
+            updateButton(event);
+        }
 
         return anchor;
     }
 
     generateTextNode(players, player) {
 
-        let text = `${player.constructor.name} #${players.indexOf(player) + 1} has ${player.getScore()}`;
-        let textTag = this.elementFactory.create("text", text);
+        let type = `${player.constructor.name}`;
+        let number = (player.constructor.name == "Dealer") ? "" : `#${players.indexOf(player) + 1}`;
+        let points = `${player.getScore()}`;
+        let content = `${type} ${number} has ${points}`;
+
+        let textTag = this.elementFactory.create("text", content);
 
         return textTag;
     }

@@ -38,6 +38,17 @@
             summaryUpdater.update(bj.dealer.players, "scores");
             tableUpdater.update(bj.dealer.players, "table");
         };
+
+        function updateButton(event) {
+            let elementId = event.currentTarget.id;
+            let playerId = elementId
+                .replace('player-', '')
+                .replace('-button', '');
+            let players = bj.dealer.players;
+            let player = players[playerId];
+            player.setHit(!player.getHit());
+            summaryUpdater.update(bj.dealer.players, "scores");
+        };
     </script>
 </body>
 
