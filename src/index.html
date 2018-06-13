@@ -24,6 +24,7 @@
 
 <body>
     <a class="dealButton hitMeButton" onClick="display()">Deal</a>
+    <a class="dealButton hitMeButton" onClick="reset()">Reset</a>
     <div id="scores"></div>
     <div id="table"></div>
     <script type="text/javascript">
@@ -32,6 +33,11 @@
         let cardFactory = new CardFactory(elemenFactory);
         let tableUpdater = new TableUpdater(cardFactory);
         let summaryUpdater = new SummaryUpdater(elemenFactory);
+
+        function reset() {
+            bj = new BlackJack(2);
+            display();
+        }
 
         function display() {
             bj.dealer.deal();

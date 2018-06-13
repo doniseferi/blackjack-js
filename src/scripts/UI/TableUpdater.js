@@ -7,10 +7,17 @@ class TableUpdater {
     }
 
     update(players, elementId) {
+
         let htmlElement = document.getElementById(elementId)
         htmlElement.innerHTML = "";
+
         players.forEach(player => {
-            table.appendChild(this.cardFactory.create(player.cards));
+
+            let playersHandDiv = this.cardFactory.create(player.cards);
+
+            playersHandDiv.setAttribute('id', `player-${players.indexOf(player)}-hand`);
+
+            table.appendChild(playersHandDiv);
         });
     };
 }
