@@ -18,7 +18,7 @@ class Player {
     }
 
     getHit() {
-        return this.hit;
+        return this.hit && this.getScore() < blackJack;
     }
 
     notOut() {

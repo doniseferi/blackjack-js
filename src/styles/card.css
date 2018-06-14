@@ -53,6 +53,32 @@ div[class*='suit']:after {
     bottom: 5px;
 }
 
+.handContainer h1 {
+    text-align: center;
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 30px;
+    color: white;
+    letter-spacing: 3px;
+}
+
+.handContainer h1:hover {
+    color: #edeeef;
+}
+
+.handContainer:hover {
+    color:#262424;
+}
+
+.handContainer {
+    display: inline-block;
+    margin: 0px 50px 0px 50px;
+}
+.handContainer:first-child  {
+    margin: 20px 50px 20px 50px
+}
+.handContainer:last-child  {
+    margin: 20px 50px 50px 50px}
+
 .hand {
     margin: 50px;
 }

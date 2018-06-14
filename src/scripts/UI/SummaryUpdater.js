@@ -1,8 +1,9 @@
 "use strict";
 
 class SummaryUpdater {
-    constructor(elementFactory) {
+    constructor(elementFactory, playerFactory) {
         this.elementFactory = elementFactory;
+        this.playerFactory = playerFactory;
     }
 
     update(players, elementId) {
@@ -11,7 +12,8 @@ class SummaryUpdater {
 
         players.forEach(player => {
 
-            let playerDiv = this.createPlayerDiv(player, players);
+            let playerDiv = this.playerFactory.create(player, players);
+
             htmlElement.appendChild(playerDiv);
         });
     }
@@ -21,52 +23,8 @@ class SummaryUpdater {
         let htmlElement = document.getElementById(elementId)
 
         htmlElement.innerHTML = "";
-        htmlElement.setAttribute("class", "summary");
+        htmlElement.setAttribute("class", "summary shadowBorder");
 
         return htmlElement;
-    }
-
-
-    createPlayerDiv(player, players) {
-
-        let button = this.createPlayerButton(player, players);
-        let playerText = this.generateTextNode(players, player);
-
-        let playerDiv = this.elementFactory.create("div");
-        playerDiv.appendChild(playerText);
-        playerDiv.appendChild(button);
-
-        return playerDiv;
-    }
-
-    createPlayerButton(player, players) {
-
-        if (player.constructor.name == 'Dealer') {
-            return this.elementFactory.create("a");
-        }
-
-        let text = player.getHit() ? "Hit Me" : "Stay";
-        let anchor = this.elementFactory.create("a", text);
-
-        anchor.setAttribute("class", "hitMeButton");
-        let id = `player-${players.indexOf(player)}-button`;
-        anchor.setAttribute("id", id);
-        anchor.onclick = function (event) {
-            updateButton(event);
-        }
-
-        return anchor;
-    }
-
-    generateTextNode(players, player) {
-
-        let type = `${player.constructor.name}`;
-        let number = (player.constructor.name == "Dealer") ? "" : `#${players.indexOf(player) + 1}`;
-        let points = `${player.getScore()}`;
-        let content = `${type} ${number} has ${points}`;
-
-        let textTag = this.elementFactory.create("text", content);
-
-        return textTag;
     }
 }

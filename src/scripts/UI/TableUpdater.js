@@ -2,8 +2,9 @@
 
 class TableUpdater {
 
-    constructor(cardFactory) {
+    constructor(cardFactory, elementFactory) {
         this.cardFactory = cardFactory;
+        this.elementFactory = elementFactory;
     }
 
     update(players, elementId) {
@@ -13,11 +14,20 @@ class TableUpdater {
 
         players.forEach(player => {
 
-            let playersHandDiv = this.cardFactory.create(player.cards);
+            let container = this.elementFactory.create("div");
+            let header = this.getPlayersHeader(players, player);
+            let playersHand = this.cardFactory.create(player.cards);
 
-            playersHandDiv.setAttribute('id', `player-${players.indexOf(player)}-hand`);
-
-            table.appendChild(playersHandDiv);
+            container.setAttribute("class", "handContainer shadowBorder");
+            container.appendChild(header);
+            container.appendChild(playersHand);
+            htmlElement.appendChild(container);
         });
     };
+
+    getPlayersHeader(players, player) {
+        let type = player.constructor.name;
+        let number = (type !== "Dealer") ? players.indexOf(player) + 1 : "";
+        return this.elementFactory.create("h1", `${type} ${number}`);
+    }
 }

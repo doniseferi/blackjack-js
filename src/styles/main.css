@@ -14,14 +14,13 @@ body {
 
 .summary {
     background-color: #2e903d;
-    border: 1px solid black;
     padding: 33px;
     width: 290px;
     margin-top: 23px;
     margin-left: 50px;
 }
 
-.summary h1 {
+.h1,h2,h3 {
     font-family: 'Fjalla One', sans-serif;
     font-size: 30px;
 }

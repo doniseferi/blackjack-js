@@ -2,11 +2,12 @@
 
 class ElementFactory {
 
-    create(elementType, elementContent) {
+    //es6 feature: default parameter values
+    create(elementType, elementContent = null) {
 
         let element = document.createElement(elementType);
 
-        if (typeof elementContent !== 'undefined' && elementContent !== null) {
+        if (elementContent !== null) {
 
             let content = document.createTextNode(elementContent);
 

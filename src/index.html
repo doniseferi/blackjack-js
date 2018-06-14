@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="./styles/main.css" />
     <link rel="stylesheet" href="./styles/card.css" />
+    <link rel="stylesheet" href="./styles/border.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fjalla+One">
     <script src="./scripts/Distribution/InitalCardDistribution.js"></script>
     <script src="./scripts/Distribution/SingleCardDistribution.js"></script>
@@ -20,6 +21,7 @@
     <script src="./scripts/UI/TableUpdater.js"></script>
     <script src="./scripts/UI/ElementFactory.js"></script>
     <script src="./scripts/UI/SummaryUpdater.js"></script>
+    <script src="./scripts/UI/PlayerFactory.js"></script>
 </head>
 
 <body>
@@ -29,10 +31,11 @@
     <div id="table"></div>
     <script type="text/javascript">
         let bj = new BlackJack(2);
-        let elemenFactory = new ElementFactory();
-        let cardFactory = new CardFactory(elemenFactory);
-        let tableUpdater = new TableUpdater(cardFactory);
-        let summaryUpdater = new SummaryUpdater(elemenFactory);
+        let elementFactory = new ElementFactory();
+        let cardFactory = new CardFactory(elementFactory);
+        let tableUpdater = new TableUpdater(cardFactory, elementFactory);
+        let playerFactory = new PlayerFactory(elementFactory);
+        let summaryUpdater = new SummaryUpdater(elementFactory, playerFactory);
 
         function reset() {
             bj = new BlackJack(2);
