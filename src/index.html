@@ -55,7 +55,7 @@
                 .replace('-button', '');
             let players = bj.dealer.players;
             let player = players[playerId];
-            player.setHit(!player.getHit());
+            player.hit = !player.hit;
             summaryUpdater.update(bj.dealer.players, "scores");
         };
     </script>

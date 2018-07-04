@@ -24,7 +24,7 @@ class PlayerFactory {
             return this.elementFactory.create("a");
         }
 
-        let anchor = this.elementFactory.create("a", player.getHit() ? "Hit Me" : "Stay");
+        let anchor = this.elementFactory.create("a", player.hit ? "Hit Me" : "Stay");
         anchor.setAttribute("id", `player-${players.indexOf(player)}-button`);
         anchor.setAttribute("class", "hitMeButton");
 
@@ -39,7 +39,7 @@ class PlayerFactory {
 
         let type = `${player.constructor.name}`;
         let number = (player.constructor.name == "Dealer") ? "" : `#${players.indexOf(player) + 1}`;
-        let points = `${player.getScore()}`;
+        let points = `${player.score}`;
         let content = `${type} ${number} has ${points}`;
 
         let textTag = this.elementFactory.create("text", content);

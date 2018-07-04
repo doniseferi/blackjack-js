@@ -1,5 +1,5 @@
 "use strict";
-
+//see if you can convert this ranks into a set
 let ranks = [];
 ranks.push({
     key: 0,

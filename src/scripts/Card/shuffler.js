@@ -3,13 +3,13 @@
 class Shuffler {
 
   shuffle(deck) {
-    let shuffleCount = this.getShuffleCount(deck);
+    let shuffleCount = this.getAmountOfShufflesNeeded(deck);
     for (let i = 0; i < shuffleCount; i++) {
       this.shuffleDeck(deck);
     }
   }
 
-  getShuffleCount(deck) {
+  getAmountOfShufflesNeeded(deck) {
     let singleDeckSize = 52;
     let optimumShuffleCount = 7;
     let shuffleCount = (deck.length / singleDeckSize) * optimumShuffleCount;

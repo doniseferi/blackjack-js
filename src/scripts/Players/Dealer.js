@@ -23,13 +23,13 @@ class Dealer extends Player {
         }
     }
 
-    getHit() {
+    get hit() {
 
         let players = this.players.filter(player => player.constructor.name == "Player");
 
         let closestToBlackJack = this.pointsCalculator.getHighestValidCard(players);
 
-        let points = this.getScore();
+        let points = this.score;
 
         return points < minimumDealerPoint || (points <= closestToBlackJack && points < blackJack);
     }

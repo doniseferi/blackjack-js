@@ -5,23 +5,22 @@ class Player {
     constructor(pointsCalculator) {
         this.pointsCalculator = pointsCalculator;
         this.cards = [];
-        this.hit = false;
-        this.out = false;
+        this._hit = false;
     }
 
-    getScore() {
+    get score() {
         return this.pointsCalculator.calculateHand(this.cards)
     }
 
-    setHit(value) {
-        this.hit = value;
+    set hit(value) {
+        this._hit = value;
     }
 
-    getHit() {
-        return this.hit && this.getScore() < blackJack;
+    get hit() {
+        return this._hit && this.score < blackJack;
     }
 
-    notOut() {
-        return this.getScore() <= blackJack;
+    get out() {
+        return this.score > blackJack;
     }
 }
