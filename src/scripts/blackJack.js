@@ -7,7 +7,8 @@ class BlackJack {
         let deck = this.initalizeDeck(numberOfPlayers);
         let players = this.initalizePlayers(numberOfPlayers);
         let distributor = this.initalizeDistributor();
-        this.dealer = new Dealer(this.pointsCalculator, players, deck, distributor);
+        let calculateHitStrategies = this.initalizeHitStrategies();
+        this.dealer = new Dealer(this.pointsCalculator, players, deck, distributor, calculateHitStrategies);
     };
 
     initalizeDeck(numberOfPlayers) {
@@ -30,4 +31,10 @@ class BlackJack {
         let distributorFactory = new DistributionFactory();
         return distributorFactory.create();
     }
+
+    initalizeHitStrategies() {
+        let factory = new CalulateHitStrategyFactory(this.pointsCalculator);
+        return factory.create();
+    }
+
 }
