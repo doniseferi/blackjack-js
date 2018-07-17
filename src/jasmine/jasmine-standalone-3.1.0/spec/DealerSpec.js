@@ -42,4 +42,24 @@ describe("A dealer ", function () {
             expect(card).toEqual(cardFromDeck);
         }
     });
+
+    it("can deal a card", function () {
+        var card = dealer.dealCard();
+
+        expect(card.constructor.name).toEqual('Card');
+    });
+
+    it("deals a card from the top of the deck", function () {
+        var expectedCard = deck[deck.length - 1];
+        var actualCard = dealer.dealCard();
+
+        expect(expectedCard).toEqual(actualCard);
+    });
+
+    it("then doesnt have the dealt card", function () {
+
+        var dealtCard = dealer.dealCard();
+        var actual = deck.includes(dealtCard);
+        expect(actual).toBe(false);
+    });
 });
