@@ -18,14 +18,14 @@ describe("A dealer ", function () {
 
     it("has a deck with at least 52 cards", function () {
 
-        var deckGreaterOrEqualTo52 = deck.length >= 52
+        let deckGreaterOrEqualTo52 = deck.length >= 52
 
         expect(deckGreaterOrEqualTo52).toBe(true);
     });
 
     it("has a deck and a deck has every suite and value", function () {
 
-        var expectedDeck = [];
+        let expectedDeck = [];
 
         for (rank = 0; rank < 13; rank++) {
             for (suite = 0; suite < 4; suite++) {
@@ -35,31 +35,57 @@ describe("A dealer ", function () {
 
         for (card = 0; card < expectedDeck.length; card++) {
 
-            var card = expectedDeck[card];
+            let expectedCard = expectedDeck[card];
 
-            var cardFromDeck = deck.find(c => c.rank.value == card.rank.value && c.suit.value == card.suit.value);
+            let actualCard = deck.find(c => c.rank.value == expectedCard.rank.value && c.suit.value == expectedCard.suit.value);
 
-            expect(card).toEqual(cardFromDeck);
+            expect(expectedCard).toEqual(actualCard);
         }
     });
 
     it("can deal a card", function () {
-        var card = dealer.dealCard();
+        let card = dealer.dealCard();
 
         expect(card.constructor.name).toEqual('Card');
     });
 
     it("deals a card from the top of the deck", function () {
-        var expectedCard = deck[deck.length - 1];
-        var actualCard = dealer.dealCard();
+        let expectedCard = deck[deck.length - 1];
+        let actualCard = dealer.dealCard();
 
         expect(expectedCard).toEqual(actualCard);
     });
 
-    it("then doesnt have the dealt card", function () {
+    it("deals a card then the card is not in the deck", function () {
 
-        var dealtCard = dealer.dealCard();
-        var actual = deck.includes(dealtCard);
+        let dealtCard = dealer.dealCard();
+        let actual = deck.includes(dealtCard);
         expect(actual).toBe(false);
     });
+
+    it("has no cards before dealing", function () {
+        let cardCount = dealer.cards.length;
+        expect(cardCount).toEqual(0);
+    });
+
+    it("has 2 cards after it deals the first hand", function () {
+        dealer.deal();
+        let cardCount = dealer.cards.length;
+        expect(cardCount).toEqual(2);
+    });
+
+    it("hits when it has less than 17", function () {
+        dealer.deal();
+        console.log(dealer.cards);
+        dealer.cards = [new Card(1, 1), new Card(1, 1)];
+        console.log(dealer.cards);
+        let hit = dealer.hit;
+        expect(hit).toBe(true);
+    });
+    it("does not hit when it has 21", function () {
+        dealer.deal();
+        dealer.cards = [new Card(0, 0), new Card(3, 10)];
+        let hit = dealer.hit;
+        expect(hit).toBe(false);
+    })
 });
