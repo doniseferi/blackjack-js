@@ -1,58 +1,53 @@
-describe("Player", function() {
+describe("A Player ", function () {
+
   var player;
-  var song;
+  var dealer;
 
-  beforeEach(function() {
-    player = new Player();
-    song = new Song();
+  beforeEach(function () {
+    let blackJack = new BlackJack(1);
+    dealer = blackJack.dealer;
+    player = dealer.players[0];
   });
 
-  it("should be able to play a Song", function() {
-    player.play(song);
-    expect(player.currentlyPlayingSong).toEqual(song);
+  it("should have 0 cards before first hand is dealt", function () {
 
-    //demonstrates use of custom matcher
-    expect(player).toBePlaying(song);
+    let preDealtCardCount = player.cards.length;
+
+    expect(preDealtCardCount).toBe(0);
+  })
+
+  it("should have 2 cards when first hand is dealt", function () {
+
+    dealer.deal();
+
+    let postDealtCardCount = player.cards.length;
+
+    expect(postDealtCardCount).toBe(2);
   });
 
-  describe("when song has been paused", function() {
-    beforeEach(function() {
-      player.play(song);
-      player.pause();
-    });
+  it("should get a new card when player decides to hit", function () {
 
-    it("should indicate that the song is currently paused", function() {
-      expect(player.isPlaying).toBeFalsy();
+    dealer.deal();
 
-      // demonstrates use of 'not' with a custom matcher
-      expect(player).not.toBePlaying(song);
-    });
+    player.hit = true;
 
-    it("should be possible to resume", function() {
-      player.resume();
-      expect(player.isPlaying).toBeTruthy();
-      expect(player.currentlyPlayingSong).toEqual(song);
-    });
+    dealer.deal();
+
+    let playerCardCount = player.cards.length;
+
+    expect(playerCardCount).toBe(3);
   });
 
-  // demonstrates use of spies to intercept and test method calls
-  it("tells the current song if the user has made it a favorite", function() {
-    spyOn(song, 'persistFavoriteStatus');
+  it("shouldn't get a new card when player decides to stay", function () {
 
-    player.play(song);
-    player.makeFavorite();
+    dealer.deal();
 
-    expect(song.persistFavoriteStatus).toHaveBeenCalledWith(true);
-  });
+    player.hit = false;
 
-  //demonstrates use of expected exceptions
-  describe("#resume", function() {
-    it("should throw an exception if song is already playing", function() {
-      player.play(song);
+    dealer.deal();
 
-      expect(function() {
-        player.resume();
-      }).toThrowError("song is already playing");
-    });
+    let playerCardCount = player.cards.length;
+
+    expect(playerCardCount).toBe(2);
   });
 });
