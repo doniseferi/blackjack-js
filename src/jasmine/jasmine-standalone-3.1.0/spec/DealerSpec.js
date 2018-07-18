@@ -2,11 +2,13 @@ describe("A dealer ", function () {
 
     var dealer;
     var deck;
+    var players;
 
     beforeEach(function () {
         let blackJack = new BlackJack(1);
         dealer = blackJack.dealer;
         deck = dealer.deck;
+        players = dealer.players;
     });
 
     it("has a deck of cards", function () {
@@ -59,33 +61,76 @@ describe("A dealer ", function () {
     it("deals a card then the card is not in the deck", function () {
 
         let dealtCard = dealer.dealCard();
+
         let actual = deck.includes(dealtCard);
+
         expect(actual).toBe(false);
     });
 
     it("has no cards before dealing", function () {
+
         let cardCount = dealer.cards.length;
+
         expect(cardCount).toEqual(0);
     });
 
     it("has 2 cards after it deals the first hand", function () {
+
         dealer.deal();
-        let cardCount = dealer.cards.length;
-        expect(cardCount).toEqual(2);
+
+        for (i = 0; i < players.count; i++) {
+
+            let cardCount = players[i];
+        }
+
+        var dealerCardCount = dealer.cards.length;
+        var playerCardCount = players[0].cards.length;
+
+        expect(playerCardCount).toEqual(dealerCardCount);
+        expect(playerCardCount).toEqual(2);
+    });
+
+    it("deals only 1 card after it deals the first hand", function () {
+
+        dealer.deal();
+
+        players[0].cards = [new Card(1, 1), new Card(1, 1)];
+        players[0].hit = true;
+        dealer.cards = [new Card(1, 1), new Card(1, 1)];
+
+
+        dealer.deal();
+
+        var dealerCardCount = dealer.cards.length;
+        var playerCardCount = players[0].cards.length;
+
+        expect(playerCardCount).toEqual(3);
+        expect(playerCardCount).toEqual(dealerCardCount);
     });
 
     it("hits when it has less than 17", function () {
-        dealer.deal();
-        console.log(dealer.cards);
+
         dealer.cards = [new Card(1, 1), new Card(1, 1)];
-        console.log(dealer.cards);
+
         let hit = dealer.hit;
+
         expect(hit).toBe(true);
     });
-    it("does not hit when it has 21", function () {
-        dealer.deal();
-        dealer.cards = [new Card(0, 0), new Card(3, 10)];
+
+    it("does not hit when the dealer has 21", function () {
+
+        dealer.cards = [new Card(1, 0), new Card(1, 10)];
+
         let hit = dealer.hit;
+
         expect(hit).toBe(false);
+    });
+
+    it("hits when the dealer has less that 17", function () {
+        dealer.cards = [new Card(1, 5), new Card(1, 10)];
+
+        let hit = dealer.hit;
+
+        expect(hit).toBe(true);
     })
 });
