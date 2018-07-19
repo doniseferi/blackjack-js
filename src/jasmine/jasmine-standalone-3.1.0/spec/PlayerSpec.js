@@ -29,11 +29,11 @@ describe("A Player ", function () {
 
     dealer.deal();
 
-    player.hit = true;
+    dealer.cards = [new Card(2, 2), new Card(2, 2)];
 
     dealer.deal();
 
-    let playerCardCount = player.cards.length;
+    let playerCardCount = dealer.cards.length;
 
     expect(playerCardCount).toBe(3);
   });
