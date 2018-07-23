@@ -50,4 +50,45 @@ describe("A Player ", function () {
 
     expect(playerCardCount).toBe(2);
   });
+
+  it("should return 21 when a player has an ace and a face card", function () {
+
+    let highestFaceCard = 12;
+    let lowestFaceCard = 10;
+    let faceCard = Math.floor(Math.random() * (highestFaceCard - lowestFaceCard + 1)) + lowestFaceCard;
+
+    let highestSuit = 3;
+    let lowestSuit = 0;
+    let randomSuit = Math.floor(Math.random() * (highestSuit - lowestSuit + 1)) + lowestSuit
+
+    player.cards = [new Card(randomSuit, 0), new Card(randomSuit, faceCard)]
+
+    expectPlayerScoreToBe(player, 21);
+  });
+
+  it("should return 21 when a player has an ace and a 10", function () {
+
+    player.cards = [new Card(0, 0), new Card(0, 9)];
+
+    expectPlayerScoreToBe(player, 21);
+  });
+
+  it("should return 21 when a player has 2 face cards and an ace", function () {
+
+    player.cards = [new Card(0, 9), new Card(1, 10), new Card(2, 0)];
+
+    expectPlayerScoreToBe(player, 21);
+  });
+
+  it("should return 21 when a player has cards equaling 20 and an ace", function () {
+
+    player.cards = [new Card(0, 4), new Card(0, 5), new Card(1, 8), new Card(1, 0)];
+
+    expectPlayerScoreToBe(player, 21);
+  });
 });
+
+function expectPlayerScoreToBe(player, expectedScore) {
+  var playerScore = player.score;
+  expect(playerScore).toBe(expectedScore);
+}
