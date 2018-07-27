@@ -5,7 +5,7 @@ class Player {
     constructor(pointsCalculator) {
         this.pointsCalculator = pointsCalculator;
         this.cards = [];
-        this._hit = false;
+        this._hit = true;
     }
 
     get score() {
@@ -17,7 +17,7 @@ class Player {
     }
 
     get hit() {
-        return this._hit && this.score < blackJack;
+        return this._hit && this.score <= blackJack;
     }
 
     get out() {
