@@ -45,7 +45,7 @@ class BlackJack {
     }
 
     get state() {
-        let any = this.players.some(x => x.out === false);
+        let any = this.players.includes(x => x.out === false);
 
         return any ? "Game Not Over" : "Game Over";
     }

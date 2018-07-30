@@ -122,14 +122,67 @@ describe("Blackjack  ", function () {
             }
         }
     });
+    it("The game is over", function () {
+        expect(true).toBeFalsy()
+    });
     it("the game is over if a round is played and no one has taken a card", function () {
+        blackJack.playRound();
         let players = blackJack.players.filter(x => x.constructor.name === "Player");
         players.forEach(p => blackJack.stand(p));
         blackJack.dealer.hit = false;
-        blackJack.state;
-        expect(blackJack.state).toContain("Game over");
+        expect(blackJack.state).toContain("Game Over");
     });
-    it("tells you if the dealer has won", function () { expect(true).toBeFalsy(); });
-    it("raises an event when the game is over", function () { expect(true).toBeFalsy(); });
-    it("raises an error when a round is attempted after a game is over", function () { expect(true).toBeFalsy(); });
+    it("tells you if a player has won", function () {
+        let player1 = blackJack.players[0];
+        let player2 = blackJack.players[1];
+        let dealer = blackJack.players[2];
+
+        player1.cards = [new Card(0, 0), new Card(0, 10)];
+        player2.cards = [new Card(0, 0), new Card(0, 8)];
+        dealer.cards = [new Card(1, 10), new Card(1, 10), new Card(1, 11)];
+
+        expect(blackJack.state).toContain("Player1 is a winner");
+    });
+    it("tells you if a player has lost", function () {
+        let player1 = blackJack.players[0];
+        let player2 = blackJack.players[1];
+        let dealer = blackJack.players[2];
+
+        player1.cards = [new Card(0, 0), new Card(0, 10)];
+        player2.cards = [new Card(2, 10), new Card(0, 8), new Card(1, 8)];
+        dealer.cards = [new Card(1, 10), new Card(1, 10), new Card(1, 11)];
+
+        expect(blackJack.state).toContain("Player2 is not a winner");
+    });
+    it("tells you if the dealer has won", function () {
+        let player1 = blackJack.players[0];
+        let player2 = blackJack.players[1];
+        let dealer = blackJack.players[2];
+
+        player1.cards = [new Card(1, 10), new Card(1, 10), new Card(1, 11)];
+        player2.cards = [new Card(0, 0), new Card(0, 8)];
+        dealer.cards = [new Card(0, 0), new Card(0, 10)];
+
+        expect(blackJack.state).toContain("The dealer is a winner");
+    });
+
+    it("Nothing happens when a round is attempted after a game is over", function () {
+        let player1 = blackJack.players[0];
+        let player2 = blackJack.players[1];
+        let dealer = blackJack.players[2];
+
+        player1.cards = [new Card(1, 10), new Card(1, 10), new Card(1, 11)];
+        player2.cards = [new Card(0, 0), new Card(0, 8)];
+        dealer.cards = [new Card(0, 0), new Card(0, 10)];
+
+        player1.hit = false;
+        player2.hit = false;
+        dealer.hit = false;
+
+        let prePlayedRoundState = blackJack.state;
+        blackJack.playRound();
+        let postPlayedRoundState = blackJack.state;
+
+        expect(postPlayedRoundState).toEqual(prePlayedRoundState);
+    });
 });
