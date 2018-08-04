@@ -45,9 +45,24 @@ class BlackJack {
     }
 
     get state() {
-        let any = this.players.includes(x => x.out === false);
 
-        return any ? "Game Not Over" : "Game Over";
+        let winningResult = "";
+        let losingResult = "";
+        let scoresResult = "";
+
+        let playersOut = this.players.filter(x => (x.out == true && x.constructor.name == "Player") || (!x.out && x.score <= this.dealer.score && x.constructor.name == "Player"));
+        let winners = this.players.filter(x => playersOut.indexOf(x) == -1 && x.constructor.name == "Player" && x.score > this.dealer.score);
+
+        if (winners.some()) {
+            winningResult += this.winners.forEach(x => "Player" + (+1) + " is a winner");
+
+        } else {
+
+        }
+
+
+        return gameOver + " " + winners + " " + losers + points;
+
     }
 
     initalizeDeck(numberOfPlayers) {
