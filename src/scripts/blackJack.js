@@ -49,19 +49,53 @@ class BlackJack {
         let winningResult = "";
         let losingResult = "";
         let scoresResult = "";
+        let points = "";
+        let gameOver = "Game Over";
 
-        let playersOut = this.players.filter(x => (x.out == true && x.constructor.name == "Player") || (!x.out && x.score <= this.dealer.score && x.constructor.name == "Player"));
-        let winners = this.players.filter(x => playersOut.indexOf(x) == -1 && x.constructor.name == "Player" && x.score > this.dealer.score);
+        let losers = this.players.filter((x => x.constructor.name == "Player" &&
+                x.score <= this.dealer.score) ||
+            (x.constructor.name == "Player" && x.out == true));
 
-        if (winners.some()) {
-            winningResult += this.winners.forEach(x => "Player" + (+1) + " is a winner");
+        console.log("Losers");
+        console.log(losers);
+
+        let winners = this.players.filter((x => x.constructor.name == "Player" &&
+            x.score >= this.dealer.score && x.out == false));
+
+        if (winners !== undefined || winners.length > 0) {
+
+            for (let i = 0; i < winners.length; i++) {
+                let player = winners[i];
+                let playerNo = this.players.indexOf(player) + 1;
+                let playerDetail = "Player" + playerNo + " is a winner ";
+                winningResult += playerDetail;
+            }
+
+            for (let i = 0; i < losers.length; i++) {
+                let player = losers[i];
+                let playerNo = this.players.indexOf(player) + 1;
+                let playerDetail = "Player" + playerNo + " is a loser ";
+                losingResult += playerDetail;
+            }
 
         } else {
+            winningResult += "The dealer is the winner";
 
+            for (i = 0; i < losers.length; i++) {
+
+
+                for (let i = 0; i < losers.length; i++) {
+                    let player = losers[i];
+                    let playerNo = this.players.indexOf(player) + 1;
+                    let playerDetail = "Player" + playerNo + " is a loser ";
+                    losingResult += playerDetail;
+                }
+            }
         }
 
+        this.players.forEach(x => points += x.constructor.name + " has " + x.score + " ");
 
-        return gameOver + " " + winners + " " + losers + points;
+        return gameOver + " " + winningResult + " " + losingResult + points;
 
     }
 

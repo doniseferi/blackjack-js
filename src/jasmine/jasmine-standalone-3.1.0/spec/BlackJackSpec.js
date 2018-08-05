@@ -122,6 +122,11 @@ describe("Blackjack  ", function () {
             }
         }
     });
+
+    it("tells you the game is not over", function () {
+        blackJack.playRound();
+        expect(blackJack.state).toContain("Game Being Played");
+    });
     it("tells you the game is over", function () {
         blackJack.playRound();
         let players = blackJack.players.filter(x => x.constructor.name === "Player");
