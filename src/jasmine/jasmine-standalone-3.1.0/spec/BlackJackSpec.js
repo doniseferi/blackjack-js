@@ -109,8 +109,8 @@ describe("Blackjack  ", function () {
 
         expect(actualCardCount).toBe(expectedCardCount);
     })
-    it("every player gets 1 card after the first round if theyre still in", function () {
-        blackJack.playRound();
+    it("every player thats in gets 1 card after the first round", function () {
+        blackJack.players.forEach(x => x.cards = [new Card(1, 1), new Card(1, 1)]);
         blackJack.playRound();
 
         for (i = 0; i < blackJack.players.length; i++) {
