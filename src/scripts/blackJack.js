@@ -45,58 +45,48 @@ class BlackJack {
     }
 
     get state() {
+        let gameOver = this.players.some(x => x.hit) ? "Game Being Played" : "Game Over";
 
-        let winningResult = "";
-        let losingResult = "";
-        let scoresResult = "";
-        let points = "";
-        let gameOver = "Game Over";
+        let winners = this.players.filter(x => !x.out); //.forEach(x => win.set(this.playerName(x), x.score));
+        let losers = this.players.filter(x => !winners.includes(x)); //.forEach(x => lose.set(this.playerName(x), x.score));
 
-        let losers = this.players.filter((x => x.constructor.name == "Player" &&
-                x.score <= this.dealer.score) ||
-            (x.constructor.name == "Player" && x.out == true));
+        let win = new Map();
+        let lose = new Map();
 
-        console.log("Losers");
-        console.log(losers);
+        winners.forEach(x => win.set(this.playerName(x), x.score));
+        losers.forEach(x => lose.set(this.playerName(x), x.score));
 
-        let winners = this.players.filter((x => x.constructor.name == "Player" &&
-            x.score >= this.dealer.score && x.out == false));
+        let isDealerWinner = win.has("Dealer");
 
-        if (winners !== undefined || winners.length > 0) {
+        let winRes = "";
+        let loseRes = "";
 
-            for (let i = 0; i < winners.length; i++) {
-                let player = winners[i];
-                let playerNo = this.players.indexOf(player) + 1;
-                let playerDetail = "Player" + playerNo + " is a winner ";
-                winningResult += playerDetail;
-            }
-
-            for (let i = 0; i < losers.length; i++) {
-                let player = losers[i];
-                let playerNo = this.players.indexOf(player) + 1;
-                let playerDetail = "Player" + playerNo + " is a loser ";
-                losingResult += playerDetail;
-            }
-
+        if (isDealerWinner) {
+            winRes += "The dealer is the winner";
         } else {
-            winningResult += "The dealer is the winner";
-
-            for (i = 0; i < losers.length; i++) {
-
-
-                for (let i = 0; i < losers.length; i++) {
-                    let player = losers[i];
-                    let playerNo = this.players.indexOf(player) + 1;
-                    let playerDetail = "Player" + playerNo + " is a loser ";
-                    losingResult += playerDetail;
-                }
-            }
+            winners.forEach(x => winRes += this.playerName(x) + " is a winner ")
         }
 
-        this.players.forEach(x => points += x.constructor.name + " has " + x.score + " ");
+        losers.forEach(x => loseRes += this.playerName(x) + " is a loser ");
 
-        return gameOver + " " + winningResult + " " + losingResult + points;
+        var partialResult = winRes + loseRes;
 
+        return gameOver == "Game Over" ?
+            gameOver + " " + partialResult :
+            gameOver + partialResult;
+    }
+
+    dealerHasWonResult(result) {
+        return result.has("Dealer") ? "The dealer is the winner" : "";
+    }
+
+    winners(result) {
+        let y = result.forEach(x => x.key)
+    }
+
+    playerName(player) {
+        let playerNo = this.players.indexOf(player) + 1;
+        return player.constructor.name == "Player" ? "Player" + playerNo : "Dealer";
     }
 
     initalizeDeck(numberOfPlayers) {
