@@ -14,7 +14,7 @@ class BlackJack {
     getCardsForPlayer(player) {
         this.assertPlayerBelongsToGame(player);
 
-        return this.players.find(x => x === player).cards;
+        return player.cards;
     }
 
     assertPlayerBelongsToGame(player) {
@@ -28,6 +28,7 @@ class BlackJack {
 
     isPlayerOut(player) {
         this.assertPlayerBelongsToGame(player);
+
         return player.out;
     }
 
@@ -74,14 +75,6 @@ class BlackJack {
         return gameOver == "Game Over" ?
             gameOver + " " + partialResult :
             gameOver + partialResult;
-    }
-
-    dealerHasWonResult(result) {
-        return result.has("Dealer") ? "The dealer is the winner" : "";
-    }
-
-    winners(result) {
-        let y = result.forEach(x => x.key)
     }
 
     playerName(player) {
