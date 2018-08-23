@@ -2,6 +2,9 @@
 
 class BlackJack {
 
+    //TODO dependencies need to be passed in through the ctor
+    //either that or a factory needs to be provided for this
+    //or an object grapher to emulate dependency injection
     constructor(numberOfPlayers) {
         this.pointsCalculator = new PointsCalculator();
         let deck = this.initalizeDeck(numberOfPlayers);
