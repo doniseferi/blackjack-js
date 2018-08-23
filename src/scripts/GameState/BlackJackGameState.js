@@ -1,20 +1,18 @@
 "use strict";
 
-//TODO:
-//this class should be responsible for 1 thing, returning the current state of the class
-//however the class is doing 6 things which should be broken down
 class BlackJackGameState {
     state(blackJack) {
 
-        let gameOver = this.getGameOverContent(blackJack);
-        let winners = this.getWinnersContent(blackJack);
-        let losers = this.getLosersContent(blackJack);
+        let gameState = this.gameState(blackJack);
+        let winners = this.winnersContent(blackJack);
+        let losers = this.losersContent(blackJack);
 
-        return gameOver + winners + losers;
+        return gameState + winners + losers;
     }
 
+    //TODO:
     //this needs to move out of here so this class that returns a list of winners and this creates a string
-    getWinnersContent(blackJack) {
+    winnersContent(blackJack) {
         let winners = blackJack.players.filter(x => !x.out);
 
         let winRes = "";
@@ -33,12 +31,12 @@ class BlackJackGameState {
     }
 
     //this needs to be moved out of here into a class that determines if a game is over
-    getGameOverContent(blackJack) {
+    gameState(blackJack) {
         return blackJack.players.some(x => x.hit) ? "Game Being Played" : "Game Over"
     }
 
     //this needs to move out of here so this class that returns a list of losers and this creates a string
-    getLosersContent(blackJack) {
+    losersContent(blackJack) {
         let losers = blackJack.players.filter(x => !blackJack.players.filter(x => !x.out).includes(x));
 
         let loseRes = "";
