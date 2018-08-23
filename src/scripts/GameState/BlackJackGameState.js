@@ -5,9 +5,10 @@ class BlackJackGameState {
 
         let gameOver = blackJack.players.some(x => x.hit) ? "Game Being Played" : "Game Over";
 
-        let winners = blackJack.players.filter(x => !x.out); //.forEach(x => win.set(this.playerName(x), x.score));
-        let losers = blackJack.players.filter(x => !winners.includes(x)); //.forEach(x => lose.set(this.playerName(x), x.score));
+        let winners = blackJack.players.filter(x => !x.out);
+        let losers = blackJack.players.filter(x => !winners.includes(x));
 
+        //TODO: remove if not used
         let win = new Map();
         let lose = new Map();
 
