@@ -52,7 +52,6 @@ class BlackJack {
     }
 
 
-
     initalizeDeck(numberOfPlayers) {
         let deckFactory = new DeckFactory();
         let deck = deckFactory.create(numberOfPlayers);
