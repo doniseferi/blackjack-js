@@ -178,14 +178,19 @@ describe("Blackjack  ", function () {
         expect(blackJack.state).toContain("Dealer is a winner");
     });
 
-    it("tells you that there are winners and losers", function () {
-        let player1 = blackJack.players[0];
-        let player2 = blackJack.players[1];
+    it("state gives you the expected result", function () {
+        let winner = blackJack.players[0];
+        let loser = blackJack.players[1];
         let dealer = blackJack.players[2];
 
-        player1.cards = [new Card(0, 0), new Card(0, 10)];
-        player2.cards = [new Card(2, 10), new Card(0, 8), new Card(1, 8)];
-        dealer.cards = [new Card(1, 10), new Card(1, 10), new Card(1, 11)];
+        winner.cards = [new Card(0, 0), new Card(0, 10)];
+        loser.cards = [new Card(2, 10), new Card(0, 8), new Card(1, 8)];
+        dealer.cards = [new Card(1, 9), new Card(2, 9), new Card(3, 4)];
+
+        winner.hit = false;
+        loser.hit = false;
+
+        expect(blackJack.state).toEqual("Game Over Player1 is a winner Player2 is a loser Dealer is a loser");
     })
 
     it("Nothing happens when a round is attempted after a game is over", function () {

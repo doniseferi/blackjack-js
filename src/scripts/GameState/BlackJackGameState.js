@@ -22,25 +22,24 @@ class BlackJackGameState {
 
 
     losers(blackJack) {
-        // return blackJack.players.filter(x => !this.winners(blackJack).includes(x));
-        return blackJack.players;
+        return this.winners(blackJack).length > 0 ?
+            blackJack.players.filter(x => !this.winners(blackJack).includes(x)) : [];
     }
 
 
     winnersContent(blackJack) {
-        let content;
+        let content = "";
 
-        this.winners(blackJack)
-            .forEach(x =>
-                content += this.playerName(x, blackJack.players) + " is a winner")
+        this.winners(blackJack).forEach(x =>
+            content += this.playerName(x, blackJack.players) + " is a winner")
 
         return content;
     }
 
     gameState(blackJack) {
-        return this.gameOver(blackJack)
-            ? "Game Over"
-            : "Game Being Played";
+        return this.gameOver(blackJack) ?
+            "Game Over" :
+            "Game Being Played";
     }
 
     //this needs to move out of here so this class that returns a list of losers and this creates a string
