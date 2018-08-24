@@ -7,41 +7,47 @@ class BlackJackGameState {
         let winners = this.winnersContent(blackJack);
         let losers = this.losersContent(blackJack);
 
-        return gameState + winners + losers;
+        return gameState + " " + winners + " " + losers;
     }
 
-    //TODO:
-    //this needs to move out of here so this class that returns a list of winners and this creates a string
+    gameOver(blackJack) {
+        return !blackJack.players.some(x => x.hit)
+    }
+
+    winners(blackJack) {
+        let winners = blackJack.players.filter(x => !x.out)
+
+        return this.gameOver ? winners : [];
+    }
+
+
+    losers(blackJack) {
+        // return blackJack.players.filter(x => !this.winners(blackJack).includes(x));
+        return blackJack.players;
+    }
+
+
     winnersContent(blackJack) {
-        let winners = blackJack.players.filter(x => !x.out);
+        let content;
 
-        let winRes = "";
+        this.winners(blackJack)
+            .forEach(x =>
+                content += this.playerName(x, blackJack.players) + " is a winner")
 
-        //determining if the dealer is the winner
-        let isDealerWinner = winners.some(x => x.constructor.name == "Dealer");
-
-        //creating the winning result string
-        if (isDealerWinner) {
-            winRes += "The dealer is the winner";
-        } else {
-            winners.forEach(x => winRes += this.playerName(x, blackJack.players) + " is a winner ")
-        }
-
-        return winRes;
+        return content;
     }
 
-    //this needs to be moved out of here into a class that determines if a game is over
     gameState(blackJack) {
-        return blackJack.players.some(x => x.hit) ? "Game Being Played" : "Game Over"
+        return this.gameOver(blackJack)
+            ? "Game Over"
+            : "Game Being Played";
     }
 
     //this needs to move out of here so this class that returns a list of losers and this creates a string
     losersContent(blackJack) {
-        let losers = blackJack.players.filter(x => !blackJack.players.filter(x => !x.out).includes(x));
-
         let loseRes = "";
 
-        losers.forEach(x => loseRes += this.playerName(x, blackJack.players) + " is a loser ");
+        this.losers(blackJack).forEach(x => loseRes += this.playerName(x, blackJack.players) + " is a loser ");
 
         return loseRes;
     }

@@ -132,7 +132,6 @@ describe("Blackjack  ", function () {
         let players = blackJack.players.filter(x => x.constructor.name === "Player");
         players.forEach(p => blackJack.stand(p));
         blackJack.dealer.cards = [new Card(0, 0), new Card(0, 10)];
-        blackJack.dealer.hit = false;
         expect(blackJack.state).toContain("Game Over");
     });
     it("the game is over if a round is played and no one has taken a card", function () {
@@ -176,21 +175,30 @@ describe("Blackjack  ", function () {
         player2.cards = [new Card(0, 10), new Card(0, 8), new Card(1, 11)];
         dealer.cards = [new Card(0, 0), new Card(0, 10)];
 
-        expect(blackJack.state).toContain("The dealer is the winner");
+        expect(blackJack.state).toContain("Dealer is a winner");
     });
 
-    it("Nothing happens when a round is attempted after a game is over", function () {
+    it("tells you that there are winners and losers", function () {
         let player1 = blackJack.players[0];
         let player2 = blackJack.players[1];
         let dealer = blackJack.players[2];
 
-        player1.cards = [new Card(1, 10), new Card(1, 10), new Card(1, 11)];
-        player2.cards = [new Card(0, 0), new Card(0, 8)];
+        player1.cards = [new Card(0, 0), new Card(0, 10)];
+        player2.cards = [new Card(2, 10), new Card(0, 8), new Card(1, 8)];
+        dealer.cards = [new Card(1, 10), new Card(1, 10), new Card(1, 11)];
+    })
+
+    it("Nothing happens when a round is attempted after a game is over", function () {
+        let loser = blackJack.players[0];
+        let winner = blackJack.players[1];
+        let dealer = blackJack.players[2];
+
+        loser.cards = [new Card(1, 10), new Card(1, 10), new Card(1, 11)];
+        winner.cards = [new Card(0, 0), new Card(0, 8)];
         dealer.cards = [new Card(0, 0), new Card(0, 10)];
 
-        player1.hit = false;
-        player2.hit = false;
-        dealer.hit = false;
+        loser.hit = false;
+        winner.hit = false;
 
         let prePlayedRoundState = blackJack.state;
         blackJack.playRound();
