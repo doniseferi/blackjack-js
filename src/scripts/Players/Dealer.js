@@ -13,6 +13,10 @@ class Dealer extends Player {
         this.calulateHitStrategy = calulateHitStrategy;
     }
 
+    get name() {
+        return "Dealer";
+    }
+
     deal() {
         this.cardDitributor.distribute(this);
     }

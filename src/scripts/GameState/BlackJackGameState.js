@@ -1,13 +1,18 @@
 "use strict";
 
 class BlackJackGameState {
+
+    constructor() {
+        this.resultFormatter = new ResultFormatter();
+    }
+
     state(blackJack) {
 
-        let gameState = this.gameState(blackJack);
-        let winners = this.winnersContent(blackJack);
-        let losers = this.losersContent(blackJack);
+        let isGameOver = this.gameOver(blackJack);
+        let winners = this.winners(blackJack)
+        let losers = this.losers(blackJack)
 
-        return gameState + " " + winners + " " + losers;
+        return this.resultFormatter.format(isGameOver, winners, losers);
     }
 
     gameOver(blackJack) {
@@ -20,40 +25,43 @@ class BlackJackGameState {
         return this.gameOver ? winners : [];
     }
 
-
     losers(blackJack) {
         return this.winners(blackJack).length > 0 ?
             blackJack.players.filter(x => !this.winners(blackJack).includes(x)) : [];
     }
+}
 
-
-    winnersContent(blackJack) {
+class ResultFormatter {
+    format(isGameOver, winners, losers) {
         let content = "";
 
-        this.winners(blackJack).forEach(x =>
-            content += this.playerName(x, blackJack.players) + " is a winner")
+        content += this.gameOverFormat(isGameOver) + " ";
 
+        for (let w = 0; w < winners.length; w++) {
+
+            content += `${winners[w].name} is a winner`;
+
+            if (w < winners.length - 1) {
+                content += " ";
+            }
+        }
+
+        content += " ";
+
+        for (let l = 0; l < losers.length; l++) {
+
+            content += `${losers[l].name} is a loser`;
+
+            if (l < losers.length - 1) {
+                content += " ";
+            }
+        }
         return content;
     }
 
-    gameState(blackJack) {
-        return this.gameOver(blackJack) ?
+    gameOverFormat(isGameOver) {
+        return isGameOver ?
             "Game Over" :
             "Game Being Played";
-    }
-
-    //this needs to move out of here so this class that returns a list of losers and this creates a string
-    losersContent(blackJack) {
-        let loseRes = "";
-
-        this.losers(blackJack).forEach(x => loseRes += this.playerName(x, blackJack.players) + " is a loser ");
-
-        return loseRes;
-    }
-
-    //formating the string
-    playerName(player, players) {
-        let playerNo = players.indexOf(player) + 1;
-        return player.constructor.name == "Player" ? "Player" + playerNo : "Dealer";
     }
 }

@@ -66,7 +66,7 @@ class BlackJack {
     initalizePlayers(numberOfPlayers) {
         let players = [];
         for (let i = 0; i < numberOfPlayers; i++) {
-            players.push(new Player(this.pointsCalculator));
+            players.push(new Player(this.pointsCalculator, `Player${i+1}`));
         }
         return players;
     }

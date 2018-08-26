@@ -2,10 +2,15 @@
 
 class Player {
 
-    constructor(pointsCalculator) {
+    constructor(pointsCalculator, name = "Player") {
+        this._name = name;
         this.pointsCalculator = pointsCalculator;
         this.cards = [];
         this._hit = true;
+    }
+
+    get name() {
+        return this._name;
     }
 
     get score() {
