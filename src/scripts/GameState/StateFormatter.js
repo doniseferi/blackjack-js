@@ -2,29 +2,12 @@
 
 class StateFormatter {
     format(isGameOver, winners, losers) {
-        let content = "";
+        let content = `${this.gameOverFormat(isGameOver)} `;
 
-        content += this.gameOverFormat(isGameOver) + " ";
+        content += this.winnersContent(winners);
 
-        for (let w = 0; w < winners.length; w++) {
+        content += this.losersContent(losers, content);
 
-            content += `${winners[w].name} is a winner`;
-
-            if (w < winners.length - 1) {
-                content += " ";
-            }
-        }
-
-        content += " ";
-
-        for (let l = 0; l < losers.length; l++) {
-
-            content += `${losers[l].name} is a loser`;
-
-            if (l < losers.length - 1) {
-                content += " ";
-            }
-        }
         return content;
     }
 
@@ -32,5 +15,27 @@ class StateFormatter {
         return isGameOver ?
             "Game Over" :
             "Game Being Played";
+    }
+
+    winnersContent(winners) {
+        let content = "";
+        winners.forEach(function (player, index) {
+            content += `${player.name} is a winner`;
+            if (index < winners.length - 1) {
+                content += " ";
+            }
+        });
+        return content + " ";
+    }
+
+    losersContent(losers) {
+        let content = "";
+        losers.forEach(function (loser, index) {
+            content += `${loser.name} is a loser`;
+            if (index < losers.length - 1) {
+                content += " ";
+            }
+        });
+        return content;
     }
 }

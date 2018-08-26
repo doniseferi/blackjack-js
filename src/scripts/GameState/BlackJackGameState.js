@@ -2,8 +2,8 @@
 
 class BlackJackGameState {
 
-    constructor() {
-        this.stateFormatter = new StateFormatter();
+    constructor(stateFormatter = new StateFormatter()) {
+        this.stateFormatter = stateFormatter;
     }
 
     state(blackJack) {
