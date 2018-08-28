@@ -4,6 +4,8 @@ class StateFormatter {
     format(isGameOver, winners, losers) {
         let content = `${this.gameOverFormat(isGameOver)} `;
 
+        //TODO: this is where the white space between winner and losers should be
+        //and it should not be for the winnersContent method.
         content += this.winnersContent(winners);
 
         content += this.losersContent(losers, content);
