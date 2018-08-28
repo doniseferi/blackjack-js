@@ -36,6 +36,8 @@
     <div id="scores"></div>
     <div id="table"></div>
     <script type="text/javascript">
+        //todo
+        //this needs to be moved out into its own script so that the ui has a simple initalise method
         let bj = new BlackJack(2);
         let elementFactory = new ElementFactory();
         let cardFactory = new CardFactory(elementFactory);
@@ -43,6 +45,7 @@
         let playerFactory = new PlayerFactory(elementFactory);
         let summaryUpdater = new SummaryUpdater(elementFactory, playerFactory);
 
+        //todo remove into its own script file
         function reset() {
             bj = new BlackJack(2);
             display();
@@ -56,6 +59,8 @@
             tableUpdater.update(bj.players, "table");
         };
 
+        //todo:
+        //remove into its own script file
         function updateButton(event) {
             let elementId = event.currentTarget.id;
             let playerId = elementId
