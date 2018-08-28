@@ -5,6 +5,9 @@ class BlackJack {
     //TODO dependencies need to be passed in through the ctor
     //either that or a factory needs to be provided for this
     //or an object grapher to emulate dependency injection
+    //create a factory or class that removes all the initalize methods out
+    //of this class and into their own
+    //so this class is solely responsible for being the interface to blackjack
     constructor(numberOfPlayers) {
         this.pointsCalculator = new PointsCalculator();
         let deck = this.initalizeDeck(numberOfPlayers);

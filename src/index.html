@@ -49,9 +49,11 @@
         }
 
         function display() {
-            bj.dealer.deal();
-            summaryUpdater.update(bj.dealer.players, "scores");
-            tableUpdater.update(bj.dealer.players, "table");
+            //todo
+            //this needs to move out of here into its own class
+            bj.playRound();
+            summaryUpdater.update(bj.players, "scores");
+            tableUpdater.update(bj.players, "table");
         };
 
         function updateButton(event) {
@@ -59,10 +61,10 @@
             let playerId = elementId
                 .replace('player-', '')
                 .replace('-button', '');
-            let players = bj.dealer.players;
+            let players = bj.players;
             let player = players[playerId];
             player.hit = !player.hit;
-            summaryUpdater.update(bj.dealer.players, "scores");
+            summaryUpdater.update(bj.players, "scores");
         };
     </script>
 </body>

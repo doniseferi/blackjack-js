@@ -18,11 +18,12 @@ class Player {
     }
 
     set hit(value) {
-        this._hit = value;
+        this.score < blackJack ?
+            this._hit = value : {};
     }
 
     get hit() {
-        return this._hit && this.score <= blackJack;
+        return this._hit && this.score < blackJack;
     }
 
     get out() {
