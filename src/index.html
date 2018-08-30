@@ -24,6 +24,7 @@
     <script src="./scripts/UI/ElementFactory.js"></script>
     <script src="./scripts/UI/SummaryUpdater.js"></script>
     <script src="./scripts/UI/PlayerFactory.js"></script>
+    <script src="./scripts/UI/UiScript.js"></script>
     <script src="./scripts/Players/HitCalculator/CalculateHitStrategyFactory.js"></script>
     <script src="./scripts/Players/HitCalculator/CalculateHitStrategy.js"></script>
     <script src="./scripts/Players/HitCalculator/HitDealer.js"></script>
@@ -36,40 +37,18 @@
     <div id="scores"></div>
     <div id="table"></div>
     <script type="text/javascript">
-        //todo
-        //this needs to be moved out into its own script so that the ui has a simple initalise method
-        let bj = new BlackJack(2);
-        let elementFactory = new ElementFactory();
-        let cardFactory = new CardFactory(elementFactory);
-        let tableUpdater = new TableUpdater(cardFactory, elementFactory);
-        let playerFactory = new PlayerFactory(elementFactory);
-        let summaryUpdater = new SummaryUpdater(elementFactory, playerFactory);
+        let uiScript = new UiScript(2);
 
-        //todo remove into its own script file
         function reset() {
-            bj = new BlackJack(2);
-            display();
+            uiScript.reset();
         }
 
         function display() {
-            //todo
-            //this needs to move out of here into its own class
-            bj.playRound();
-            summaryUpdater.update(bj.players, "scores");
-            tableUpdater.update(bj.players, "table");
+            uiScript.display();
         };
 
-        //todo:
-        //remove into its own script file
         function updateButton(event) {
-            let elementId = event.currentTarget.id;
-            let playerId = elementId
-                .replace('player-', '')
-                .replace('-button', '');
-            let players = bj.players;
-            let player = players[playerId];
-            player.hit = !player.hit;
-            summaryUpdater.update(bj.players, "scores");
+            uiScript.updateButton(event);
         };
     </script>
 </body>
