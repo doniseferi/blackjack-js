@@ -3,7 +3,7 @@
 class UiScript {
 
     constructor(numberOfPlayers = 2) {
-        alert('ctor called');
+
         this.bj = new BlackJack(numberOfPlayers);
         let elementFactory = new ElementFactory();
         let cardFactory = new CardFactory(elementFactory);
@@ -11,6 +11,12 @@ class UiScript {
         let playerFactory = new PlayerFactory(elementFactory);
         this.summaryUpdater = new SummaryUpdater(elementFactory, playerFactory);
     }
+
+    // constructor(blackJack, tableUpdater, summaryUpdater, numberOfPlayers = 2) {
+    //     this._blackJack = blackJack;
+    //     this._tableUpdater = tableUpdater;
+    //     this._summaryUpdater = summaryUpdater;
+    // }
 
     reset(numberOfPlayers = 2) {
         this.bj = new BlackJack(numberOfPlayers);
