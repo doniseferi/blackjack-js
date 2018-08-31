@@ -1,6 +1,6 @@
 "use strict";
 
-class CardFactory {
+class UiCardFactory {
 
     constructor(elementFactory) {
         this.elementFactory = elementFactory;

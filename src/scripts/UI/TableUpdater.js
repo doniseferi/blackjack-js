@@ -2,8 +2,8 @@
 
 class TableUpdater {
 
-    constructor(cardFactory, elementFactory) {
-        this.cardFactory = cardFactory;
+    constructor(uiCardFactory, elementFactory) {
+        this.uiCardFactory = uiCardFactory;
         this.elementFactory = elementFactory;
     }
 
@@ -16,7 +16,7 @@ class TableUpdater {
 
             let container = this.elementFactory.create("div");
             let header = this.getPlayersHeader(players, player);
-            let playersHand = this.cardFactory.create(player.cards);
+            let playersHand = this.uiCardFactory.create(player.cards);
 
             container.setAttribute("class", "handContainer shadowBorder");
             container.appendChild(header);

@@ -6,8 +6,8 @@ class UiScript {
 
         this.bj = new BlackJack(numberOfPlayers);
         let elementFactory = new ElementFactory();
-        let cardFactory = new CardFactory(elementFactory);
-        this.tableUpdater = new TableUpdater(cardFactory, elementFactory);
+        let uiCardFactory = new UiCardFactory(elementFactory);
+        this.tableUpdater = new TableUpdater(uiCardFactory, elementFactory);
         let playerFactory = new PlayerFactory(elementFactory);
         this.summaryUpdater = new SummaryUpdater(elementFactory, playerFactory);
     }

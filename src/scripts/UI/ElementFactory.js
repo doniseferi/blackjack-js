@@ -3,13 +3,13 @@
 class ElementFactory {
 
     //es6 feature: default parameter values
-    create(elementType, elementContent = null) {
+    create(elementType, elementTextContent = null) {
 
         let element = document.createElement(elementType);
 
-        if (elementContent !== null) {
+        if (elementTextContent) {
 
-            let content = document.createTextNode(elementContent);
+            let content = document.createTextNode(elementTextContent);
 
             element.appendChild(content);
         }
