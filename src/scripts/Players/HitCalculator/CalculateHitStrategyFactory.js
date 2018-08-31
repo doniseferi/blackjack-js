@@ -3,6 +3,6 @@
 class CalulateHitStrategyFactory {
 
     create() {
-        return new CalulateHitStrategy([new HitDealer(), new HitPlayer()]);
+        return new CalulateHitStrategy([new DealersHitStrategy()]);
     }
 }

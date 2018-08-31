@@ -1,5 +1,11 @@
 "use strict";
 
+//TODO: Split this to player points calculator that is solely tasked with calculating the hand of a player
+//and another method that gets highest valid card, gets points as below
+//this has 2-3 responsibilities at the moment, get points for a deck of card, get the highest hand
+//for a set of players
+//and get all players points
+//SRP breach, split this like a muthafuckin banana peel homie
 class PointsCalculator {
 
     getHighestValidCard(players) {

@@ -1,6 +1,7 @@
 "use strict";
 
 class StateFormatter {
+
     format(isGameOver, winners, losers) {
         let content = `${this.gameOverFormat(isGameOver)} `;
 

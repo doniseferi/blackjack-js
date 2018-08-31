@@ -1,6 +1,6 @@
 "use strict";
 
-class HitDealer {
+class DealersHitStrategy {
 
     canHandle(participant) {
         return (participant.constructor.name === 'Dealer')
