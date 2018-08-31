@@ -2,34 +2,29 @@
 
 class DeckFactory {
 
-    create(deckCount) {
+    create(numberOfDecks) {
 
         let deck = [];
 
-        deck = this.createDecks(deckCount);
-
-        return deck;
+        return this.createDecks(numberOfDecks);
     }
 
-    createDecks(amount) {
-
-        if (!amount) {
-            amount = 1;
-        }
+    createDecks(numberOfDecks = 1) {
 
         let deck = [];
 
-        for (let i = 0; i < amount; i++) {
+        for (let i = 0; i < numberOfDecks; i++) {
 
-            deck.push(this.createDeck());
+            deck.push(this.createA52CardDeck());
         }
 
+        //es6 feature FLATTENS A MULTIDIMENSIONAL ARRAY
         let ary = [].concat(...deck)
 
         return ary;
     }
 
-    createDeck() {
+    createA52CardDeck() {
 
         let deck = [];
 

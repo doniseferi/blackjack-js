@@ -15,7 +15,7 @@ class BlackJack {
         let distributor = this.initalizeDistributor();
         let calculateHitStrategies = this.initalizeHitStrategies();
         this.dealer = new Dealer(this.pointsCalculator, this.players, deck, distributor, calculateHitStrategies);
-        this.blackJackGameState = new BlackJackGameState();
+        this.blackJackGameState = new BlackJackGameState(new StateFormatter());
     };
 
     getCardsForPlayer(player) {

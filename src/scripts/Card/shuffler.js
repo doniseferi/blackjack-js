@@ -2,30 +2,29 @@
 
 class Shuffler {
 
-  shuffle(deck) {
-    let shuffleCount = this.getAmountOfShufflesNeeded(deck);
+  shuffle(deckOfCards) {
+    let shuffleCount = this.getOptimumShufflesCount(deckOfCards);
     for (let i = 0; i < shuffleCount; i++) {
-      this.shuffleDeck(deck);
+      this._shuffle(deckOfCards);
     }
   }
 
-  getAmountOfShufflesNeeded(deck) {
-    let singleDeckSize = 52;
-    let optimumShuffleCount = 7;
-    let shuffleCount = (deck.length / singleDeckSize) * optimumShuffleCount;
-    return shuffleCount;
+  getOptimumShufflesCount(deck) {
+    let numberOfCardsInSingleDeck = 52;
+    let optimumShuffleCountPer52CardDeck = 7;
+    return (deck.length / numberOfCardsInSingleDeck) * optimumShuffleCountPer52CardDeck;
   }
 
-  shuffleDeck(deck) {
-    let currentIndex = deck.length;
+  _shuffle(array) {
+    let currentIndex = array.length;
     let temporaryValue = null;
     let randomIndex;
     for (let i = 0; i < currentIndex; currentIndex--) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
-      temporaryValue = deck[currentIndex];
-      deck[currentIndex] = deck[randomIndex];
-      deck[randomIndex] = temporaryValue;
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
     }
   }
 }

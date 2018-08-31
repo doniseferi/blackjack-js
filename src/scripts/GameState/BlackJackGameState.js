@@ -2,7 +2,7 @@
 
 class BlackJackGameState {
 
-    constructor(stateFormatter = new StateFormatter()) {
+    constructor(stateFormatter) {
         this.stateFormatter = stateFormatter;
     }
 

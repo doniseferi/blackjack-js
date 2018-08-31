@@ -12,7 +12,7 @@ class UiScript {
         this.summaryUpdater = new SummaryUpdater(elementFactory, playerFactory);
     }
 
-    // constructor(blackJack, tableUpdater, summaryUpdater, numberOfPlayers = 2) {
+    // constructor(blackJack, tableUpdater, summaryUpdater) {
     //     this._blackJack = blackJack;
     //     this._tableUpdater = tableUpdater;
     //     this._summaryUpdater = summaryUpdater;
