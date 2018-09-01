@@ -9,7 +9,7 @@ class DealersHitStrategy {
     hit(dealer) {
 
         if (!this.canHandle(dealer)) {
-            throw 'Cannot handle type of participant passed in';
+            throw new Error('Cannot handle type of participant passed in');
         }
 
         let players = dealer.players.filter(player => player.constructor.name == "Player");

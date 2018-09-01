@@ -16,7 +16,8 @@
     <script src="./scripts/Card/Shuffler.js"></script>
     <script src="./scripts/Players/Player.js"></script>
     <script src="./scripts/Players/Dealer.js"></script>
-    <script src="./scripts/blackJack.js"></script>
+    <script src="./scripts/BlackJack/BlackJack.js"></script>
+    <script src="./scripts/BlackJack/BlackJackFactory.js"></script>
     <script src="./scripts/GameState/BlackJackGameState.js"></script>
     <script src="./scripts/GameState/StateFormatter.js"></script>
     <script src="./scripts/UI/UiCardFactory.js"></script>
@@ -28,6 +29,7 @@
     <script src="./scripts/Players/HitCalculator/CalculateHitStrategyFactory.js"></script>
     <script src="./scripts/Players/HitCalculator/CalculateHitStrategy.js"></script>
     <script src="./scripts/Players/HitCalculator/DealersHitStrategy.js"></script>
+    <script src="./scripts/IOC/PoorMansDependencyInjection.js"></script>
 </head>
 
 <body>
@@ -36,7 +38,8 @@
     <div id="scores"></div>
     <div id="table"></div>
     <script type="text/javascript">
-        let uiScript = new UiScript(2);
+        let pmd = new PoorMansDependencyInjection();
+        let uiScript = pmd.createUiScriptObjectGraph();
 
         function reset() {
             uiScript.reset();

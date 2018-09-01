@@ -2,32 +2,23 @@
 
 class UiScript {
 
-    constructor(numberOfPlayers = 2) {
-
-        this.bj = new BlackJack(numberOfPlayers);
-        let elementFactory = new ElementFactory();
-        let uiCardFactory = new UiCardFactory(elementFactory);
-        this.tableUpdater = new TableUpdater(uiCardFactory, elementFactory);
-        let playerFactory = new PlayerFactory(elementFactory);
-        this.summaryUpdater = new SummaryUpdater(elementFactory, playerFactory);
+    constructor(blackJack, tableUpdater, summaryUpdater) {
+        this._blackJack = blackJack;
+        this._tableUpdater = tableUpdater;
+        this._summaryUpdater = summaryUpdater;
     }
 
-    // constructor(blackJack, tableUpdater, summaryUpdater) {
-    //     this._blackJack = blackJack;
-    //     this._tableUpdater = tableUpdater;
-    //     this._summaryUpdater = summaryUpdater;
-    // }
-
-    reset(numberOfPlayers = 2) {
-        this.bj = new BlackJack(numberOfPlayers);
+    reset() {
+        let blackJackFactory = new BlackJackFactory();
+        this._blackJack = blackJackFactory.create();
         this.display();
     }
 
     display() {
-        let players = this.bj.players;
-        this.bj.playRound();
-        this.summaryUpdater.update(players, "scores");
-        this.tableUpdater.update(players, "table");
+        let players = this._blackJack.players;
+        this._blackJack.playRound();
+        this._summaryUpdater.update(players, "scores");
+        this._tableUpdater.update(players, "table");
     };
 
     updateButton(event) {
@@ -35,9 +26,9 @@ class UiScript {
         let playerId = elementId
             .replace('player-', '')
             .replace('-button', '');
-        let players = this.bj.players;
+        let players = this._blackJack.players;
         let player = players[playerId];
         player.hit = !player.hit;
-        this.summaryUpdater.update(players, "scores");
+        this._summaryUpdater.update(players, "scores");
     };
 }
