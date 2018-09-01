@@ -1,6 +1,6 @@
 "use strict";
 
-class PlayerFactory {
+class UiPlayerFactory {
 
     constructor(elementFactory) {
         this.elementFactory = elementFactory;

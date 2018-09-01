@@ -1,6 +1,6 @@
 "use strict";
 
-class SummaryUpdater {
+class UiSummaryUpdater {
     constructor(elementFactory, playerFactory) {
         this.elementFactory = elementFactory;
         this.playerFactory = playerFactory;

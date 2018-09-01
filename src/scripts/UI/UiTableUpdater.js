@@ -1,6 +1,6 @@
 "use strict";
 
-class TableUpdater {
+class UiTableUpdater {
 
     constructor(uiCardFactory, elementFactory) {
         this.uiCardFactory = uiCardFactory;

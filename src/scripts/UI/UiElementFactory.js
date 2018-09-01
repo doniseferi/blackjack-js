@@ -1,6 +1,6 @@
 "use strict";
 
-class ElementFactory {
+class UiElementFactory {
 
     //es6 feature: default parameter values
     create(elementType, elementTextContent = null) {
