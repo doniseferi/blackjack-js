@@ -2,15 +2,15 @@
 
 class UiScript {
 
-    constructor(blackJack, tableUpdater, summaryUpdater) {
-        this._blackJack = blackJack;
+    constructor(blackJackFactory, tableUpdater, summaryUpdater) {
+        this._blackJackFactory = blackJackFactory;
+        this._blackJack = blackJackFactory.create();
         this._tableUpdater = tableUpdater;
         this._summaryUpdater = summaryUpdater;
     }
 
     reset() {
-        let blackJackFactory = new BlackJackFactory();
-        this._blackJack = blackJackFactory.create();
+        this._blackJack = this._blackJackFactory.create();
         this.display();
     }
 

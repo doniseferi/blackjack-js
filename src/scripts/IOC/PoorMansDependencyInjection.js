@@ -3,7 +3,6 @@
 class PoorMansDependencyInjection {
     createUiScriptObjectGraph() {
         let blackJackFactory = new BlackJackFactory();
-        let blackJack = blackJackFactory.create();
 
         let elementFactory = new UiElementFactory();
         let uiCardFactory = new UiCardFactory(elementFactory);
@@ -13,6 +12,6 @@ class PoorMansDependencyInjection {
         let playerFactory = new UiPlayerFactory(elementFactory);
         let summaryUpdater = new UiSummaryUpdater(elementFactory, playerFactory);
 
-        return new UiScript(blackJack, tableUpdater, summaryUpdater);
+        return new UiScript(blackJackFactory, tableUpdater, summaryUpdater);
     }
 }
