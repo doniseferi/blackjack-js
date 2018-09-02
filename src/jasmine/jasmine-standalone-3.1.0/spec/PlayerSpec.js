@@ -4,7 +4,8 @@ describe("A Player ", function () {
   var dealer;
 
   beforeEach(function () {
-    let blackJack = new BlackJack(1);
+    let factory = new BlackJackFactory();
+    let blackJack = factory.create();
     dealer = blackJack.dealer;
     player = dealer.players[0];
   });

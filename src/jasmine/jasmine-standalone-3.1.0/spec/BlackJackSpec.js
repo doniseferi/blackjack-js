@@ -3,7 +3,8 @@ describe("Blackjack  ", function () {
     var blackJack;
 
     beforeEach(function () {
-        blackJack = new BlackJack(2);
+        let factory = new BlackJackFactory();
+        blackJack = factory.create();
     });
 
     it("should have a collection of players belonging to the game", function () {

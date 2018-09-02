@@ -5,7 +5,8 @@ describe("A dealer ", function () {
     var player;
 
     beforeEach(function () {
-        let blackJack = new BlackJack(1);
+        let factory = new BlackJackFactory();
+        let blackJack = factory.create();
         dealer = blackJack.dealer;
         deck = dealer.deck;
         player = dealer.players[0];
