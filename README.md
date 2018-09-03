@@ -8,10 +8,9 @@ All you need to do is clone this repository, open a compatible web browser and n
 
 ### Prerequisites
 
-As this project contains ES6 features you will need a web browser with a compatible JavaScript Engine.
-
+As this project contains ES6 features you will need a web browser with a compatible JavaScript Engine. This runs successfully on the following version with all tests passing: 
 ```
-This runs successfully on Windows 10 x64 Chrome Version 64.0.3282.186 (Official Build) (64-bit)
+ Microsoft Windows 10 Enterprise 10.0.16299 Build 16299 Google Chrome Version 64.0.3282.186 (Official Build) (64-bit)
 ```
 
 ## Running the tests
