@@ -30,8 +30,8 @@ There is no deployments needed for this project.
 
 ## Project made with the help of
 
-* [Visual Studio Code](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Javascript](https://developer.mozilla.org/bm/docs/Web/JavaScript) - Dependency Management
+* [Visual Studio Code](https://code.visualstudio.com/) - Visual Studio Code
+* [Javascript](https://developer.mozilla.org/bm/docs/Web/JavaScript) - JavaScript (with ES6 features)
 * [Jasmine](https://jasmine.github.io/) - Jasmine
 
 ## Authors
