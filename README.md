@@ -18,11 +18,7 @@ This runs successfully on Windows 10 x64 Chrome Version 64.0.3282.186 (Official 
 
 Once you have a clone this repository, open a compatible web browser and navigate to the relative path of the SpecRunner.html file in the relative path of '.\src\jasmine\jasmine-standalone-3.1.0\SpecRunner.html'
 
-# NOTE there are only domain tests and no UI tests. The tests in this project confirm that the domain logic is captured as expected and protect for any future refactoring. This project does not have any UI or end to end testing.
-
-
-### And coding style tests
-
+_### _NOTE there are only domain tests and no UI tests. The tests in this project confirm that the domain logic is captured as expected and protect for any future refactoring. This project does not have any UI or end to end testing._
 
 ## Deployment
 
