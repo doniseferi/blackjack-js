@@ -3,12 +3,15 @@
 class BlackJackFactory {
 
     create(numberOfPlayers = 2) {
+
         this.pointsCalculator = new PointsCalculator();
-        let deck = this.initalizeDeck(numberOfPlayers);
         let players = this.initalizePlayers(numberOfPlayers);
+        let deck = this.initalizeDeck(numberOfPlayers);
         let distributor = this.initalizeDistributor();
         let calculateHitStrategies = this.initalizeHitStrategies();
+
         let dealer = new Dealer(this.pointsCalculator, players, deck, distributor, calculateHitStrategies);
+
         let blackJackGameState = new BlackJackGameState(new StateFormatter());
 
         return new BlackJack(blackJackGameState, dealer);
@@ -25,7 +28,7 @@ class BlackJackFactory {
     initalizePlayers(numberOfPlayers) {
         let players = [];
         for (let i = 0; i < numberOfPlayers; i++) {
-            players.push(new Player(this.pointsCalculator, `Player${i+1}`));
+            players.push(new Player(this.pointsCalculator, `Player${i + 1}`));
         }
         return players;
     }
