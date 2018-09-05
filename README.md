@@ -1,4 +1,4 @@
-# (sorta) BlackJack
+# (sorta)BLACKJACK
 
 This vanilla JavaScript project is a learning expeirence for me more than it is an accurate modelling of the BlackJack game.
 
@@ -34,10 +34,10 @@ There is no deployments needed for this project.
 
 ## Authors
 
-* **Edonis Seferi** - *sorta BlackJack* - [blackjack-js](https://bitbucket.org/doniseferi/blackjack-js/)
-
+* **Edonis Seferi** - *(sorta)BLACKJACK* - [blackjack-js](https://bitbucket.org/doniseferi/blackjack-js/)
 
 ## Acknowledgments
-The wonderful Marketplace team at ASOS that gave me the motivation to undertake this personal learning experience. If it was not for them I would stll have the mentality that JavaScript is either the Devil or SkyNet (or both).
 
-* The Asos Marketplace Team
+* [CSS Card Tricks](https://designshack.net/articles/css/css-card-tricks/)
+
+* The wonderful Marketplace team at ASOS that gave me the motivation to undertake this personal learning experience. If it was not for them I would stll have the mentality that JavaScript is either the Devil or SkyNet (or both).
