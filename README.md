@@ -40,4 +40,4 @@ There is no deployments needed for this project.
 
 * [CSS Card Tricks](https://designshack.net/articles/css/css-card-tricks/)
 
-* The wonderful Marketplace team at ASOS that gave me the motivation to undertake this personal learning experience. If it was not for them I would have the mentality that JavaScript is either the Devil or SkyNet (or both).
+* The wonderful Marketplace team at ASOS that gave me the motivation to undertake this personal learning experience. If it were not for them I would have the mentality that JavaScript is either the Devil or SkyNet (or both).
