@@ -1,0 +1,1 @@
+gource --date-format '%a %d %B %Y' -s 1 --fullscreen --title '(sorta) BLACKJACK' --key --default-user-image 'C:\Users\edonis.seferi\Pictures\Saved Pictures\edonis.jpg'
