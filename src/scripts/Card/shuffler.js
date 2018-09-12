@@ -16,15 +16,9 @@ class Shuffler {
   }
 
   _shuffle(array) {
-    let currentIndex = array.length;
-    let temporaryValue = null;
-    let randomIndex;
-    for (let i = 0; i < currentIndex; currentIndex--) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
     }
   }
 }
