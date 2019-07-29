@@ -1,6 +1,6 @@
 # (sorta)BLACKJACK
 
-This vanilla JavaScript project is a learning expeirence for me more than it is an accurate modelling of the BlackJack game.
+This vanilla JavaScript project is a learning expeirence for me more than it is an accurate modelling of the BlackJack game (which I later found out is played completely different 😂😂😂, everyone has their own rules).
 
 ## Getting Started
 
@@ -32,12 +32,6 @@ There is no deployments needed for this project.
 * [Javascript](https://developer.mozilla.org/bm/docs/Web/JavaScript) - JavaScript (with ES6 features)
 * [Jasmine](https://jasmine.github.io/) - Jasmine
 
-## Authors
-
-* **Edonis Seferi** - *(sorta)BLACKJACK* - [blackjack-js](https://bitbucket.org/doniseferi/blackjack-js/)
-
 ## Acknowledgments
 
 * [CSS Card Tricks](https://designshack.net/articles/css/css-card-tricks/)
-
-* The wonderful Marketplace team at ASOS that gave me the motivation to undertake this personal learning experience. If it were not for them I would have the mentality that JavaScript is either the Devil or SkyNet (or both).
